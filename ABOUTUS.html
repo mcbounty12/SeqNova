@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – SeqNova</title>
+   <link rel="stylesheet" href="NOVA/ABOUTUS.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+</head>
+<script>
+  // Map of search keywords → page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ABOUTUS.html" class="active">About</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle">Lessons <i class="fas fa-chevron-down" style="font-size:0.62rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.html">1. Introduction on Application to Geometric Sequence and Series</a>
+          <a href="LESSON222.html">2. Population Growth</a>
+          <a href="LESSON333.html">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.html">Quizzes</a></li>
+      <li><a href="CONTACTS.html">Contacts</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search...">
+      </div>
+      <a href="CONTACTS.html" class="btn-contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="about-hero" id="about">
+    <div class="math-left">a<sub>n</sub> = a<sub>1</sub> + (n − 1)d</div>
+    <div class="math-right">S<sub>n</sub> = Σ<sub>k=1</sub><sup>n</sup> a<sub>k</sub></div>
+    <h1>About Us</h1>
+    <p class="tagline">Discover. Learn. Apply.</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- ========== ABOUT + GROUP PHOTO ========== -->
+  <section class="about-intro">
+    <div class="about-text">
+      <h2>About SeqNova</h2>
+      <p>
+        SeqNova is an educational platform dedicated to exploring the real-world applications of sequences and series.
+        We make mathematics relatable by connecting abstract concepts with practical, everyday life situations —
+        such as population growth and depreciation — to help learners understand the power of mathematics in shaping our world.
+      </p>
+    </div>
+    <div class="group-photo-card">
+      <!-- Group / association picture — replace src with your own file e.g. images/group-photo.jpg -->
+      <img
+        src="GROUP PICTURE.PNG"
+        alt="SeqNova team association group photo">
+      <div class="photo-caption">Our Amazing Team · SeqNova Association</div>
+    </div>
+  </section>
+
+  <!-- ========== MISSION / VISION / VALUES ========== -->
+  <section class="mvv-section">
+    <div class="mvv-card">
+      <div class="mvv-icon"><i class="fas fa-bullseye"></i></div>
+      <h3>Our Mission</h3>
+      <p>To make sequences and series accessible, practical and inspiring for everyone.</p>
+    </div>
+    <div class="mvv-card">
+      <div class="mvv-icon"><i class="fas fa-eye"></i></div>
+      <h3>Our Vision</h3>
+      <p>To be a leading online resource for mathematical applications, empowering learners to think beyond the classroom.</p>
+    </div>
+    <div class="mvv-card">
+      <div class="mvv-icon"><i class="fas fa-gem"></i></div>
+      <h3>Our Values</h3>
+      <ul class="values-list">
+        <li><i class="fas fa-check"></i> Accuracy</li>
+        <li><i class="fas fa-check"></i> Clarity</li>
+        <li><i class="fas fa-check"></i> Innovation</li>
+        <li><i class="fas fa-check"></i> Impact</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== OUR GOALS ========== -->
+  <section class="goals-section">
+    <h2>Our Goals</h2>
+    <p class="subtitle">What drives us every day as we build SeqNova</p>
+    <div class="goals-grid">
+      <div class="goal-card">
+        <div class="goal-icon"><i class="fas fa-book-open"></i></div>
+        <h4>Educate</h4>
+        <p>Break down complex mathematical concepts into simple, clear and engaging lessons that anyone can understand.</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon"><i class="fas fa-chart-line"></i></div>
+        <h4>Apply</h4>
+        <p>Show how sequences and series appear in real life — from population growth to asset depreciation.</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon"><i class="fas fa-lightbulb"></i></div>
+        <h4>Inspire</h4>
+        <p>Spark curiosity and encourage learners to think critically and solve problems creatively.</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon"><i class="fas fa-globe"></i></div>
+        <h4>Make a Difference</h4>
+        <p>Build a stronger mathematical foundation for the next generation of innovators and problem-solvers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MEET THE TEAM ========== -->
+  <section class="team-section" id="team">
+    <div class="section-header">
+      <h2>Meet Our Team</h2>
+      <p class="subtitle">We are a passionate group of six learners exploring sequences and series together.</p>
+    </div>
+    <div class="members-grid">
+
+      <!-- Member 1 -->
+      <div class="member-card">
+        <img class="member-photo"
+             src="KOFIII.PNG"
+             alt="Tettey John Oliver">
+        <h4>Tettey John Oliver</h4>
+        <div class="role">Team Lead</div>
+        <p class="bio">Leads the team with vision and coordination, ensuring every project runs smoothly and stays on track.</p>
+      </div>
+
+      <!-- Member 2 -->
+      <div class="member-card">
+        <img class="member-photo"
+             src="DAKURA.PNG"
+             alt="Christopher Dakurah">
+        <h4>Christopher Dakurah</h4>
+        <div class="role">Math Specialist</div>
+        <p class="bio">Provides deep mathematical insight and ensures all formulas, examples and explanations are accurate.</p>
+      </div>
+
+      <!-- Member 3 -->
+      <div class="member-card">
+        <img class="member-photo"
+             src="NICHO.PNG"
+             alt="Nicholas Mensah">
+        <h4>Nicholas Mensah</h4>
+        <div class="role">Content Designer</div>
+        <p class="bio">Crafts clear and engaging learning materials that make complex topics easy and enjoyable to understand.</p>
+      </div>
+
+      <!-- Member 4 -->
+      <div class="member-card">
+        <img class="member-photo"
+             src="DR.PNG"
+             alt="Samuel Amoh">
+        <h4>Samuel Amoh</h4>
+        <div class="role">UI Developer</div>
+        <p class="bio">Designs and builds the beautiful, user-friendly interface that brings SeqNova to life.</p>
+      </div>
+
+      <!-- Member 5 -->
+      <div class="member-card">
+        <img class="member-photo"
+             src="AD.PNG"
+             alt="Adwoa Safowaa Jnr">
+        <h4>Adwoa Safowaa Jnr</h4>
+        <div class="role">Researcher</div>
+        <p class="bio">Researches real-world applications and gathers reliable data to enrich every lesson.</p>
+      </div>
+
+      <!-- Member 6 -->
+      <div class="member-card">
+        <img class="member-photo"
+             src="TOMMY.PNG"
+             alt="Bright Appiah">
+        <h4>Bright Appiah</h4>
+        <div class="role">Quiz Creator</div>
+        <p class="bio">Designs challenging and thoughtful quizzes that help learners test and strengthen their knowledge.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h3>SeqNova</h3>
+          <p>Exploring the Applications of Sequences and Series</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="ABOUTUS.html">About</a>
+        <a href="LESSON.html">Lessons</a>
+        <a href="QUIZPAGE.html">Quizzes</a>
+        <a href="CONTACTS.html">Contact Us</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 SeqNova. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
