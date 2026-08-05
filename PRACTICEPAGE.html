@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Activity � SeqNova</title>
+  <link rel="stylesheet" href="NOVA/PRACTICEPAGE.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+</head>
+<script>
+  // Map of search keywords ? page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ABOUTUS.html">About</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle">Lessons <i class="fas fa-chevron-down" style="font-size:0.65rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.HTML">1. Introduction to Geometric Sequences &amp; Series</a>
+          <a href="LESSON222.HTML">2. Population Growth</a>
+          <a href="LESSON333.HTML">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.HTML">Quizzes</a></li>
+      <li><a href="PRACTICE.html" class="active">Practice</a></li>
+      <li><a href="CONTACTS.html">Contacts</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search...">
+      </div>
+      <a href="CONTACTS.html" class="btn-contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="practice-hero">
+    <div class="math-left">a<sub>n</sub> = a<sub>1</sub> &times; r<sup>n&minus;1</sup></div>
+    <div class="math-right">V<sub>n</sub> = V<sub>0</sub> &times; (1 &minus; r)<sup>n</sup></div>
+    <h1>Practice Activity</h1>
+    <p class="tagline">Strengthen Your Skills with Guided Practice</p>
+    <p>Work through questions for each lesson. Use hints and examples when you need help, then reveal the answer to check your work.</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- ========== PRACTICE ========== -->
+  <section class="practice-section">
+
+    <div class="topic-nav">
+      <a href="#intro">1. Introduction</a>
+      <a href="#population">2. Population Growth</a>
+      <a href="#depreciation">3. Depreciation</a>
+    </div>
+
+    <!-- ========== LESSON 1 ========== -->
+    <div class="topic-block" id="intro">
+      <div class="topic-header">
+        <div class="topic-icon intro"><i class="fas fa-book-open"></i></div>
+        <div>
+          <h2>Lesson 1  Geometric Sequences &amp; Series</h2>
+          <p>Practice the basics: nth term, common ratio, and sums</p>
+        </div>
+      </div>
+
+      <!-- Q1 -->
+      <div class="q-card intro-q">
+        <h3><span class="q-num">1</span> Finding the common ratio</h3>
+        <p class="question-text">
+          A geometric sequence begins: 5, 15, 45, 135, &hellip;  
+          Find the common ratio <span class="formula-inline">r</span>.
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'hint1')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'ex1')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'ans1')">Show Answer</button>
+        </div>
+        <div id="hint1" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> Divide any term by the previous term.  
+          r = a<sub>2</sub> &divide; a<sub>1</sub> = a<sub>3</sub> &divide; a<sub>2</sub> = &hellip;
+        </div>
+        <div id="ex1" class="example-box" style="display:none;">
+          <strong>Example:</strong> For 2, 6, 18, 54 &hellip;  
+          r = 6 &divide; 2 = 3, and 18 &divide; 6 = 3. So r = 3.
+        </div>
+        <div id="ans1" class="answer-box">
+          <strong>Answer:</strong> r = 15 &divide; 5 = 3.  
+          Check: 45 &divide; 15 = 3, 135 &divide; 45 = 3. Common ratio is <strong>3</strong>.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="q-card intro-q">
+        <h3><span class="q-num">2</span> Finding the nth term</h3>
+        <p class="question-text">
+          For the geometric sequence with a<sub>1</sub> = 3 and r = 2, find the 6th term a<sub>6</sub>.
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'hint2')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'ex2')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'ans2')">Show Answer</button>
+        </div>
+        <div id="hint2" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> Use a<sub>n</sub> = a<sub>1</sub> &times; r<sup>n&minus;1</sup>.  
+          Here n = 6, so a<sub>6</sub> = 3 &times; 2<sup>5</sup>.
+        </div>
+        <div id="ex2" class="example-box" style="display:none;">
+          <strong>Example:</strong> a<sub>1</sub> = 4, r = 3, find a<sub>4</sub>.  
+          a<sub>4</sub> = 4 &times; 3<sup>3</sup> = 4 &times; 27 = 108.
+        </div>
+        <div id="ans2" class="answer-box">
+          <strong>Answer:</strong> a<sub>6</sub> = 3 &times; 2<sup>5</sup> = 3 &times; 32 = <strong>96</strong>.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="q-card intro-q">
+        <h3><span class="q-num">3</span> Sum of the first n terms</h3>
+        <p class="question-text">
+          Find S<sub>5</sub> for the geometric sequence: 2, 6, 18, 54, 162 &hellip;  
+          (Use S<sub>n</sub> = a<sub>1</sub> (r<sup>n</sup> &minus; 1) &divide; (r &minus; 1).)
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'hint3')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'ex3')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'ans3')">Show Answer</button>
+        </div>
+        <div id="hint3" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> a<sub>1</sub> = 2, r = 3, n = 5.  
+          S<sub>5</sub> = 2 (3<sup>5</sup> &minus; 1) &divide; (3 &minus; 1).
+        </div>
+        <div id="ex3" class="example-box" style="display:none;">
+          <strong>Example:</strong> a<sub>1</sub> = 1, r = 2, n = 4.  
+          S<sub>4</sub> = 1 (2<sup>4</sup> &minus; 1) &divide; (2 &minus; 1) = 15.
+        </div>
+        <div id="ans3" class="answer-box">
+          <strong>Answer:</strong> S<sub>5</sub> = 2 (243 &minus; 1) &divide; 2 = 2 &times; 242 &divide; 2 = <strong>242</strong>.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="q-card intro-q">
+        <h3><span class="q-num">4</span> Writing the general term</h3>
+        <p class="question-text">
+          Write the formula for the nth term of the sequence: 7, 14, 28, 56, &hellip;
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'hint4')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'ex4')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'ans4')">Show Answer</button>
+        </div>
+        <div id="hint4" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> Find a<sub>1</sub> and r, then write a<sub>n</sub> = a<sub>1</sub> &times; r<sup>n&minus;1</sup>.
+        </div>
+        <div id="ex4" class="example-box" style="display:none;">
+          <strong>Example:</strong> 3, 6, 12, 24 &hellip; &rarr; a<sub>1</sub> = 3, r = 2 &rarr; a<sub>n</sub> = 3 &times; 2<sup>n&minus;1</sup>.
+        </div>
+        <div id="ans4" class="answer-box">
+          <strong>Answer:</strong> a<sub>1</sub> = 7, r = 2.  
+          a<sub>n</sub> = <strong>7 &times; 2<sup>n&minus;1</sup></strong>.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="q-card intro-q">
+        <h3><span class="q-num">5</span> Identifying a geometric sequence</h3>
+        <p class="question-text">
+          Which of these is a geometric sequence?  
+          (A) 2, 4, 6, 8 &nbsp;&nbsp; (B) 3, 9, 27, 81 &nbsp;&nbsp; (C) 5, 10, 20, 35
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'hint5')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'ex5')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'ans5')">Show Answer</button>
+        </div>
+        <div id="hint5" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> In a geometric sequence the ratio between consecutive terms is constant.
+        </div>
+        <div id="ex5" class="example-box" style="display:none;">
+          <strong>Example:</strong> 4, 8, 16, 32 has r = 2 throughout &rarr; geometric.  
+          4, 7, 10, 13 has a common difference, not ratio &rarr; arithmetic.
+        </div>
+        <div id="ans5" class="answer-box">
+          <strong>Answer:</strong> <strong>(B) 3, 9, 27, 81</strong> � common ratio r = 3.  
+          (A) is arithmetic (d = 2). (C) ratios are not constant (10/5 = 2, but 35/20 = 1.75).
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== LESSON 2 ========== -->
+    <div class="topic-block" id="population">
+      <div class="topic-header">
+        <div class="topic-icon pop"><i class="fas fa-users"></i></div>
+        <div>
+          <h2>Lesson 2  Population Growth</h2>
+          <p>Practice growth models: P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup></p>
+        </div>
+      </div>
+
+      <!-- Q1 -->
+      <div class="q-card pop-q">
+        <h3><span class="q-num">1</span> Future population</h3>
+        <p class="question-text">
+          A town has 8&nbsp;000 people and grows at 5% per year.  
+          What is the population after 3 years? (Round to the nearest whole number.)
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'ph1')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'pe1')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'pa1')">Show Answer</button>
+        </div>
+        <div id="ph1" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup>.  
+          P<sub>0</sub> = 8000, r = 0.05, n = 3.
+        </div>
+        <div id="pe1" class="example-box" style="display:none;">
+          <strong>Example:</strong> 5&nbsp;000 people, 4% growth, 2 years.  
+          P<sub>2</sub> = 5000 &times; (1.04)<sup>2</sup> = 5000 &times; 1.0816 = 5&nbsp;408.
+        </div>
+        <div id="pa1" class="answer-box">
+          <strong>Answer:</strong> P<sub>3</sub> = 8000 &times; (1.05)<sup>3</sup> = 8000 &times; 1.157625 = <strong>9&nbsp;261</strong>.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="q-card pop-q">
+        <h3><span class="q-num">2</span> Finding the growth rate</h3>
+        <p class="question-text">
+          A population grew from 12&nbsp;000 to 15&nbsp;972 in 4 years.  
+          Find the annual growth rate as a percentage (1 decimal place).
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'ph2')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'pe2')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'pa2')">Show Answer</button>
+        </div>
+        <div id="ph2" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> r = (P<sub>n</sub> &divide; P<sub>0</sub>)<sup>1/n</sup> &minus; 1, then &times; 100 for %.
+        </div>
+        <div id="pe2" class="example-box" style="display:none;">
+          <strong>Example:</strong> From 1000 to 1464 in 3 years.  
+          r = (1.464)<sup>1/3</sup> &minus; 1 &approx; 0.135 &rarr; 13.5%.
+        </div>
+        <div id="pa2" class="answer-box">
+          <strong>Answer:</strong> r = (15972 &divide; 12000)<sup>1/4</sup> &minus; 1 = (1.331)<sup>0.25</sup> &minus; 1 &approx; 0.074 &rarr; <strong>7.4%</strong>.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="q-card pop-q">
+        <h3><span class="q-num">3</span> Doubling time (approximate)</h3>
+        <p class="question-text">
+          A bacteria culture doubles every year. If it starts with 200 bacteria,  
+          how many are there after 5 years?
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'ph3')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'pe3')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'pa3')">Show Answer</button>
+
+        </div>
+        <div id="ph3" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> Doubling means r = 1 (100% growth), so (1 + r) = 2.  
+          P<sub>n</sub> = 200 &times; 2<sup>n</sup>.
+        </div>
+        <div id="pe3" class="example-box" style="display:none;">
+          <strong>Example:</strong> Start 50, double each year, after 3 years: 50 &times; 2<sup>3</sup> = 400.
+        </div>
+        <div id="pa3" class="answer-box">
+          <strong>Answer:</strong> P<sub>5</sub> = 200 &times; 2<sup>5</sup> = 200 &times; 32 = <strong>6&nbsp;400</strong>.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="q-card pop-q">
+        <h3><span class="q-num">4</span> One-year growth</h3>
+        <p class="question-text">
+          A city has 50&nbsp;000 people. If the growth rate is 2.5% per year,  
+          what is the population after 1 year?
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'ph4')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'pe4')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'pa4')">Show Answer</button>
+        </div>
+        <div id="ph4" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> After 1 year: P<sub>1</sub> = P<sub>0</sub> &times; (1 + r) = 50000 &times; 1.025.
+        </div>
+        <div id="pe4" class="example-box" style="display:none;">
+          <strong>Example:</strong> 10&nbsp;000 at 3%: 10000 &times; 1.03 = 10&nbsp;300.
+        </div>
+        <div id="pa4" class="answer-box">
+          <strong>Answer:</strong> 50&nbsp;000 &times; 1.025 = <strong>51&nbsp;250</strong>.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="q-card pop-q">
+        <h3><span class="q-num">5</span> Interpreting the model</h3>
+        <p class="question-text">
+          In the formula P<sub>n</sub> = 2000 &times; (1.06)<sup>n</sup>, what do 2000 and 1.06 represent?
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'ph5')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'pe5')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'pa5')">Show Answer</button>
+        </div>
+        <div id="ph5" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> Compare with P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup>.
+        </div>
+        <div id="pe5" class="example-box" style="display:none;">
+          <strong>Example:</strong> P<sub>n</sub> = 500 &times; (1.03)<sup>n</sup> means initial population 500 and 3% growth per year.
+        </div>
+        <div id="pa5" class="answer-box">
+          <strong>Answer:</strong> <strong>2000</strong> is the initial population P<sub>0</sub>.  
+          <strong>1.06</strong> is (1 + r), so the growth rate is 6% per year.
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== LESSON 3 ========== -->
+    <div class="topic-block" id="depreciation">
+      <div class="topic-header">
+        <div class="topic-icon dep"><i class="fas fa-car"></i></div>
+        <div>
+          <h2>Lesson 3  Depreciation</h2>
+          <p>Practice reducing-balance: V<sub>n</sub> = V<sub>0</sub> &times; (1 &minus; r)<sup>n</sup></p>
+        </div>
+      </div>
+
+      <!-- Q1 -->
+      <div class="q-card dep-q">
+        <h3><span class="q-num">1</span> Book value after n years</h3>
+        <p class="question-text">
+          A car costs $25&nbsp;000 and depreciates at 12% per year.  
+          Find its book value after 2 years (nearest dollar).
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'dh1')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'de1')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'da1')">Show Answer</button>
+        </div>
+
+        <div id="dh1" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> V<sub>n</sub> = V<sub>0</sub> &times; (1 &minus; r)<sup>n</sup>.  
+          V<sub>0</sub> = 25000, r = 0.12, n = 2 &rarr; (0.88)<sup>2</sup>.
+        </div>
+        <div id="de1" class="example-box" style="display:none;">
+          <strong>Example:</strong> $10&nbsp;000 at 10% for 2 years:  
+          10000 &times; (0.9)<sup>2</sup> = 10000 &times; 0.81 = $8&nbsp;100.
+        </div>
+        <div id="da1" class="answer-box">
+          <strong>Answer:</strong> V<sub>2</sub> = 25000 &times; (0.88)<sup>2</sup> = 25000 &times; 0.7744 = <strong>$19&nbsp;360</strong>.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="q-card dep-q">
+        <h3><span class="q-num">2</span> Value after one year</h3>
+        <p class="question-text">
+          A machine costs $8&nbsp;000 and depreciates at 15% per year.  
+          What is its value at the end of the first year?
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'dh2')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'de2')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'da2')">Show Answer</button>
+        </div>
+        <div id="dh2" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> After 1 year: V<sub>1</sub> = V<sub>0</sub> &times; (1 &minus; r) = 8000 &times; 0.85.
+        </div>
+        <div id="de2" class="example-box" style="display:none;">
+          <strong>Example:</strong> $5&nbsp;000 at 20%: 5000 &times; 0.80 = $4&nbsp;000.
+        </div>
+        <div id="da2" class="answer-box">
+          <strong>Answer:</strong> 8000 &times; 0.85 = <strong>$6&nbsp;800</strong>.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="q-card dep-q">
+        <h3><span class="q-num">3</span> Finding the depreciation rate</h3>
+        <p class="question-text">
+          An asset bought for $16&nbsp;000 is worth $8&nbsp;192 after 3 years.  
+          Find the annual depreciation rate (nearest whole percent).
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'dh3')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'de3')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'da3')">Show Answer</button>
+        </div>
+        <div id="dh3" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> r = 1 &minus; (V<sub>n</sub> &divide; V<sub>0</sub>)<sup>1/n</sup>.  
+          Then multiply by 100.
+        </div>
+        <div id="de3" class="example-box" style="display:none;">
+          <strong>Example:</strong> $9&nbsp;000 &rarr; $5&nbsp;832 in 2 years.  
+          r = 1 &minus; (5832/9000)<sup>1/2</sup> = 1 &minus; 0.805 &approx; 0.195 &rarr; 19.5%.
+        </div>
+        <div id="da3" class="answer-box">
+          <strong>Answer:</strong> r = 1 &minus; (8192/16000)<sup>1/3</sup> = 1 &minus; (0.512)<sup>1/3</sup> = 1 &minus; 0.8 = 0.2 &rarr; <strong>20%</strong>.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="q-card dep-q">
+        <h3><span class="q-num">4</span> Three-year depreciation table</h3>
+        <p class="question-text">
+          A laptop costs $1&nbsp;200 and depreciates at 25% per year.  
+          Find its book value at the end of year 1, year 2 and year 3.
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'dh4')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'de4')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'da4')">Show Answer</button>
+        </div>
+        <div id="dh4" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> Multiply by 0.75 each year (since 1 &minus; 0.25 = 0.75).
+        </div>
+        <div id="de4" class="example-box" style="display:none;">
+          <strong>Example:</strong> $400 at 10%: Year 1: 360; Year 2: 324; Year 3: 291.60.
+        </div>
+        <div id="da4" class="answer-box">
+          <strong>Answer:</strong>  
+          Year 1: 1200 &times; 0.75 = <strong>$900</strong>  
+          Year 2: 900 &times; 0.75 = <strong>$675</strong>  
+          Year 3: 675 &times; 0.75 = <strong>$506.25</strong>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="q-card dep-q">
+        <h3><span class="q-num">5</span> Comparing growth and decay</h3>
+        <p class="question-text">
+          Why is the common ratio for depreciation written as (1 &minus; r) instead of (1 + r)?
+        </p>
+        <div class="toggle-row">
+          <button class="btn-toggle" onclick="toggleBox(this, 'dh5')">Show Hint</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'de5')">Show Example</button>
+          <button class="btn-toggle" onclick="toggleBox(this, 'da5')">Show Answer</button>
+        </div>
+        <div id="dh5" class="hint-box" style="display:none;">
+          <strong>Hint:</strong> Think about whether the value is increasing or decreasing each year.
+        </div>
+        <div id="de5" class="example-box" style="display:none;">
+          <strong>Example:</strong> Growth 5% &rarr; multiply by 1.05.  
+          Decay 5% &rarr; multiply by 0.95 (keep 95% of the value).
+        </div>
+        <div id="da5" class="answer-box">
+          <strong>Answer:</strong> Depreciation means the value <em>falls</em>, so each year we keep only a fraction of the previous value.  
+          (1 &minus; r) is less than 1 (e.g. 0.85 for 15% depreciation).  
+          (1 + r) is greater than 1 and is used for growth, not decay.
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h3>SeqNova</h3>
+          <p>Exploring the Applications of Sequences and Series</p>
+        </div>
+      </div>
+      <div class="footer-tagline">
+        <strong>Mathematics  Growth  Change</strong><br>
+        A brighter understanding for a better future.
+      </div>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      � 2026 SeqNova. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function toggleBox(btn, id) {
+      const box = document.getElementById(id);
+      const isHidden = box.style.display === 'none' || !box.style.display;
+      // Hide sibling boxes in same card for clarity (optional: allow multiple open)
+      box.style.display = isHidden ? 'block' : 'none';
+      if (box.classList.contains('answer-box')) {
+        if (isHidden) box.classList.add('show');
+        else box.classList.remove('show');
+      }
+      btn.classList.toggle('active', isHidden);
+    }
+  </script>
+</body>
+</html>

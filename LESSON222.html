@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Population Growth � SeqNova</title>
+    <link rel="stylesheet" href="NOVA/LESSON222.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<script>
+  // Map of search keywords → page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle active">Lessons <i class="fas fa-chevron-down" style="font-size:0.65rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.html">1. Introduction to Geometric Sequences &amp; Series</a>
+          <a href="LESSON222.html">2. Population Growth</a>
+          <a href="LESSON333.HTML">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.html#quizzes">Quizzes</a></li>
+      <li><a href="ABOUTUS.html">About Us</a></li>
+      <li><a href="CONTACTS.html">Contacts</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="CONTACTS.html" class="btn-contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ========== LESSON HERO ========== -->
+  <section class="lesson-hero">
+    <div class="math-left">P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup></div>
+    <div class="math-right">P<sub>t</sub> = P<sub>0</sub> &times; e<sup>rt</sup></div>
+
+    <h1>Population Growth</h1>
+    <p class="tagline">Lesson 02 &nbsp;&bull;&nbsp; Modeling Real-World Growth with Geometric Sequences</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- ========== LESSON CONTENT ========== -->
+  <div class="lesson-content">
+    <div class="content-card">
+
+      <!-- 1 -->
+      <h2>1. Why Population Growth is Geometric</h2>
+      <p>
+        In many real-life situations, populations do not grow by a fixed number of individuals each year. 
+        Instead, they grow by a roughly <strong>constant percentage</strong> of the current population. 
+        This type of growth produces a <strong>geometric sequence</strong>.
+      </p>
+
+      <div class="definition">
+        When a population increases (or decreases) by a fixed percentage each time period, 
+        the population sizes form a geometric sequence, and the total growth can be modeled 
+        using geometric series and exponential formulas.
+      </div>
+
+      <p>
+        Examples of populations that often follow geometric growth include:
+      </p>
+      <ul>
+        <li>Bacteria and microorganisms</li>
+        <li>Human populations in certain periods</li>
+        <li>Animal populations under ideal conditions</li>
+        <li>Spread of information or viruses</li>
+      </ul>
+
+      <!-- 2 -->
+      <h2>2. The Geometric Growth Model</h2>
+      <p>
+        Let:
+      </p>
+      <ul>
+        <li><strong>P<sub>0</sub></strong> = initial population</li>
+        <li><strong>r</strong> = growth rate per time period (as a decimal)</li>
+        <li><strong>n</strong> = number of time periods</li>
+        <li><strong>P<sub>n</sub></strong> = population after n periods</li>
+      </ul>
+
+      <p>The population after n periods is given by the geometric sequence formula:</p>
+
+      <div class="formula-box">
+        P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup>
+      </div>
+
+      <p>
+        Here, the common ratio of the geometric sequence is <strong>(1 + r)</strong>.
+      </p>
+
+      <div class="note-box">
+        <strong>Note:</strong> If the population is decreasing (for example, due to emigration or decline), 
+        then r is negative and 0 &lt; (1 + r) &lt; 1.
+      </div>
+
+      <!-- 3 -->
+      <h2>3. Finding Future Population</h2>
+
+      <div class="example-box">
+        <h4>Example 1 &ndash; Basic Population Projection</h4>
+        <p>
+          A town has a population of 12 000 people. The population is growing at a rate of 4% per year. 
+          What will the population be after 6 years?
+        </p>
+        <div class="step">
+          <strong>Given:</strong><br>
+          P<sub>0</sub> = 12 000<br>
+          r = 4% = 0.04<br>
+          n = 6
+        </div>
+        <div class="step">
+          <strong>Solution:</strong><br>
+          P<sub>6</sub> = 12 000 &times; (1 + 0.04)<sup>6</sup><br>
+          P<sub>6</sub> = 12 000 &times; (1.04)<sup>6</sup><br>
+          P<sub>6</sub> = 12 000 &times; 1.265319<br>
+          P<sub>6</sub> &approx; <strong>15 184</strong>
+        </div>
+        <p>After 6 years, the population will be approximately 15 184 people.</p>
+      </div>
+
+      <div class="example-box">
+        <h4>Example 2 &ndash; Bacterial Growth</h4>
+        <p>
+          A colony of bacteria starts with 500 bacteria and doubles every 3 hours. 
+          How many bacteria will there be after 15 hours?
+        </p>
+        <div class="step">
+          Doubling means the population multiplies by 2 every 3 hours.<br>
+          Number of doubling periods in 15 hours = 15 &divide; 3 = 5
+        </div>
+        <div class="step">
+          P<sub>5</sub> = 500 &times; 2<sup>5</sup> = 500 &times; 32 = <strong>16 000</strong>
+        </div>
+        <p>After 15 hours there will be 16 000 bacteria.</p>
+      </div>
+
+      <!-- 4 -->
+      <h2>4. Finding the Growth Rate</h2>
+      <p>
+        Sometimes we know the population at two different times and need to find the annual growth rate.
+      </p>
+
+      <div class="formula-box">
+        r = (P<sub>n</sub> &divide; P<sub>0</sub>)<sup>1/n</sup> &minus; 1
+      </div>
+
+      <div class="example-box">
+        <h4>Example 3 &ndash; Calculating Growth Rate</h4>
+        <p>
+          In 2015 a city had 80 000 residents. In 2023 the population was 105 000. 
+          Find the average annual growth rate.
+        </p>
+        <div class="step">
+          P<sub>0</sub> = 80 000<br>
+          P<sub>n</sub> = 105 000<br>
+          n = 2023 &minus; 2015 = 8 years
+        </div>
+        <div class="step">
+          r = (105 000 &divide; 80 000)<sup>1/8</sup> &minus; 1<br>
+          r = (1.3125)<sup>0.125</sup> &minus; 1<br>
+          r &approx; 1.0347 &minus; 1 = <strong>0.0347</strong> or <strong>3.47%</strong>
+        </div>
+        <p>The average annual growth rate is approximately 3.47%.</p>
+      </div>
+
+      <!-- 5 -->
+      <h2>5. Doubling Time</h2>
+      <p>
+        The <strong>doubling time</strong> is the time it takes for a population to become twice its current size.
+      </p>
+
+      <div class="formula-box">
+        Doubling time &approx; 70 &divide; (growth rate in %)
+      </div>
+      <p>
+        This is known as the <strong>Rule of 70</strong> (a useful approximation).
+      </p>
+
+      <div class="example-box">
+        <h4>Example 4 &ndash; Doubling Time</h4>
+        <p>
+          A population is growing at 2.5% per year. Approximately how long will it take to double?
+        </p>
+        <div class="step">
+          Doubling time &approx; 70 &divide; 2.5 = <strong>28 years</strong>
+        </div>
+      </div>
+
+      <div class="note-box">
+        <strong>Exact formula:</strong> Using logarithms, the exact doubling time is<br>
+        n = log(2) &divide; log(1 + r)
+      </div>
+
+      <!-- 6 -->
+      <h2>6. Continuous Growth Model (Optional)</h2>
+      <p>
+        When growth is considered continuous rather than in discrete periods, 
+        we use the exponential growth formula:
+      </p>
+
+      <div class="formula-box">
+        P<sub>t</sub> = P<sub>0</sub> &times; e<sup>rt</sup>
+      </div>
+
+      <p>
+        where e &approx; 2.71828 (Euler�s number) and t is time.
+      </p>
+
+      <div class="example-box">
+        <h4>Example 5 &ndash; Continuous Growth</h4>
+        <p>
+          A population of 5 000 grows continuously at 3% per year. 
+          What will the population be after 10 years?
+        </p>
+        <div class="step">
+          P<sub>10</sub> = 5 000 &times; e<sup>0.03 &times; 10</sup><br>
+          P<sub>10</sub> = 5 000 &times; e<sup>0.3</sup><br>
+          P<sub>10</sub> = 5 000 &times; 1.34986 &approx; <strong>6 749</strong>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <h2>7. Limitations of the Geometric Growth Model</h2>
+      <p>
+        While geometric (exponential) growth is a powerful model, it has important limitations:
+      </p>
+      <ul>
+        <li>It assumes unlimited resources (food, space, etc.).</li>
+        <li>In reality, populations eventually face limiting factors and growth slows down.</li>
+        <li>The model does not account for sudden events such as disease, natural disasters, or migration.</li>
+        <li>For long-term predictions, more advanced models (such as the logistic growth model) are often used.</li>
+      </ul>
+
+      <div class="warning-box">
+        <strong>Remember:</strong> Geometric growth models are excellent for short-term and medium-term projections, 
+        but they should be used carefully for very long periods.
+      </div>
+
+      <!-- 8 -->
+      <h2>8. Summary of Key Formulas</h2>
+
+      <div class="formula-box">
+        Future population:&nbsp;&nbsp; P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup>
+      </div>
+
+      <div class="formula-box">
+        Growth rate:&nbsp;&nbsp; r = (P<sub>n</sub> &divide; P<sub>0</sub>)<sup>1/n</sup> &minus; 1
+      </div>
+
+      <div class="formula-box">
+        Doubling time (approx):&nbsp;&nbsp; 70 &divide; (growth rate %)
+      </div>
+
+      <div class="formula-box">
+        Continuous growth:&nbsp;&nbsp; P<sub>t</sub> = P<sub>0</sub> &times; e<sup>rt</sup>
+      </div>
+
+      <!-- 9 -->
+      <h2>9. Practice Questions</h2>
+      <ol>
+        <li>
+          A village has 8 500 people and is growing at 3.2% per year. 
+          What will the population be after 5 years?
+        </li>
+        <li>
+          A bacterial culture doubles every 4 hours. Starting with 200 bacteria, 
+          how many will there be after 20 hours?
+        </li>
+        <li>
+          In 2010 a country had 45 million people. In 2020 it had 52 million. 
+          Calculate the average annual growth rate.
+        </li>
+        <li>
+          A population is growing at 1.8% per year. Approximately how many years will it take to double?
+        </li>
+        <li>
+          A city of 30 000 is decreasing in population by 1.5% each year due to migration. 
+          What will the population be after 8 years?
+        </li>
+      </ol>
+
+      <div class="btn-row">
+        <a href="LESSON333.HTML" class="btn-primary">
+          <i class="fas fa-arrow-right"></i> Next Lesson: Depreciation
+        </a>
+        <a href="LESSONSSS.html" class="btn-outline">
+          <i class="fas fa-arrow-left"></i> Previous Lesson
+        </a>
+        <a href="LESSON.html" class="btn-outline">
+          <i class="fas fa-th-large"></i> All Lessons
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h3>SeqNova</h3>
+          <p>Exploring the Applications of Sequences and Series</p>
+        </div>
+      </div>
+
+      <div class="footer-tagline">
+        <strong>Mathematics &bull; Growth &bull; Change</strong><br>
+        A brighter understanding for a better future.
+      </div>
+
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 SeqNova. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

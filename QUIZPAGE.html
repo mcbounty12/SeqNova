@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizzes – SeqNova</title>
+   <link rel="stylesheet" href="NOVA/QUIZPAGE.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+</head>
+<script>
+  // Map of search keywords → page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle">Lessons <i class="fas fa-chevron-down" style="font-size:0.65rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.html">1. Introduction to Geometric Sequences &amp; Series</a>
+          <a href="LESSON222.html">2. Population Growth</a>
+          <a href="LESSON333.html">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.html" class="active">Quizzes</a></li>
+      <li><a href="ABOUTUS.html">About Us</a></li>
+      <li><a href="CONTACTS.html">Contacts</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="CONTACTS.html" class="btn-contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="quiz-hero">
+    <div class="math-left">a<sub>n</sub> = a<sub>1</sub> + (n − 1)d</div>
+    <div class="math-right">S<sub>n</sub> = Σ a<sub>k</sub></div>
+
+    <h1>Quizzes</h1>
+    <p class="tagline">Test Your Knowledge. Build Your Understanding.</p>
+    <p>Choose a topic and challenge yourself on the real-life applications of sequences and series.</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- ========== QUIZ CARDS ========== -->
+  <section class="quizzes-section">
+
+    <!-- Population Growth Quiz -->
+    <div class="quiz-card pop-card">
+      <div class="quiz-card-header pop">
+        <div class="header-top">
+          <div class="header-icon"><i class="fas fa-users"></i></div>
+          <div>
+            <h2>Population Growth Quiz</h2>
+            <p>Geometric sequences in action — growth over time</p>
+          </div>
+        </div>
+      </div>
+      <div class="quiz-card-body">
+        <p>
+          This quiz tests how well you understand population growth as a geometric sequence. 
+          You will work with the model P<sub>n</sub> = P<sub>0</sub> × (1 + r)<sup>n</sup>, 
+          interpret year-by-year change, find growth rates, and make simple predictions about 
+          future population size.
+        </p>
+
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Apply the geometric growth formula</li>
+          <li><i class="fas fa-check-circle"></i> Calculate population after n years</li>
+          <li><i class="fas fa-check-circle"></i> Find the annual growth rate</li>
+          <li><i class="fas fa-check-circle"></i> Read and interpret growth sequences</li>
+          <li><i class="fas fa-check-circle"></i> Solve short real-life style problems</li>
+          <li><i class="fas fa-check-circle"></i> Connect sequences to population change</li>
+        </ul>
+
+        <div class="meta-row">
+          <div class="meta-item"><i class="fas fa-list-ol"></i> 12 Questions</div>
+          <div class="meta-item"><i class="fas fa-clock"></i> About 15–20 minutes</div>
+          <div class="meta-item"><i class="fas fa-graduation-cap"></i> Based on Lesson 2</div>
+        </div>
+
+        <a href="QUIZ1.HTML" class="btn-start">
+          <i class="fas fa-play"></i> Start Population Growth Quiz
+        </a>
+      </div>
+    </div>
+
+    <!-- Depreciation Quiz -->
+    <div class="quiz-card dep-card">
+      <div class="quiz-card-header dep">
+        <div class="header-top">
+          <div class="header-icon"><i class="fas fa-car"></i></div>
+          <div>
+            <h2>Depreciation Quiz</h2>
+            <p>Geometric decay — value falling over time</p>
+          </div>
+        </div>
+      </div>
+      <div class="quiz-card-body">
+        <p>
+          This quiz focuses on reducing-balance depreciation. You will use the model 
+          V<sub>n</sub> = V<sub>0</sub> × (1 − r)<sup>n</sup> to find book values, 
+          work out depreciation rates, and understand how the value of assets such as 
+          cars and equipment decreases geometrically year after year.
+        </p>
+
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Apply the depreciation formula</li>
+          <li><i class="fas fa-check-circle"></i> Find book value after n years</li>
+          <li><i class="fas fa-check-circle"></i> Calculate the depreciation rate</li>
+          <li><i class="fas fa-check-circle"></i> Track value as a geometric sequence</li>
+          <li><i class="fas fa-check-circle"></i> Solve practical asset-value problems</li>
+          <li><i class="fas fa-check-circle"></i> Link decay models to real situations</li>
+        </ul>
+
+        <div class="meta-row">
+          <div class="meta-item"><i class="fas fa-list-ol"></i> 12 Questions</div>
+          <div class="meta-item"><i class="fas fa-clock"></i> About 15–20 minutes</div>
+          <div class="meta-item"><i class="fas fa-graduation-cap"></i> Based on Lesson 3</div>
+        </div>
+
+        <a href="QUIZ2.HTML" class="btn-start">
+          <i class="fas fa-play"></i> Start Depreciation Quiz
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps-row">
+      <div class="step-item">
+        <div class="step-icon"><i class="fas fa-book-open"></i></div>
+        <h4>1. Choose a Quiz</h4>
+        <p>Select Population Growth or Depreciation.</p>
+      </div>
+      <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="step-item">
+        <div class="step-icon"><i class="fas fa-pencil-alt"></i></div>
+        <h4>2. Answer Questions</h4>
+        <p>Solve the questions carefully and clearly.</p>
+      </div>
+      <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="step-item">
+        <div class="step-icon"><i class="fas fa-check-double"></i></div>
+        <h4>3. Check Results</h4>
+        <p>See your score and review the answers.</p>
+      </div>
+      <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="step-item">
+        <div class="step-icon"><i class="fas fa-lightbulb"></i></div>
+        <h4>4. Learn &amp; Improve</h4>
+        <p>Understand mistakes and grow stronger.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h3>SeqNova</h3>
+          <p>Exploring the Applications of Sequences and Series</p>
+        </div>
+      </div>
+
+      <div class="footer-tagline">
+        <strong>Mathematics · Growth · Change</strong><br>
+        A brighter understanding for a better future.
+      </div>
+
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 SeqNova. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

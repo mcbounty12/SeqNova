@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Depreciation � SeqNova</title>
+    <link rel="stylesheet" href="NOVA/LESSON333.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<script>
+  // Map of search keywords → page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle active">Lessons <i class="fas fa-chevron-down" style="font-size:0.65rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.html">1. Introduction to Geometric Sequences &amp; Series</a>
+          <a href="LESSON222.html">2. Population Growth</a>
+          <a href="LESSON333.html">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.html#quizzes">Quizzes</a></li>
+      <li><a href="ABOUTUS.html">About Us</a></li>
+      <li><a href="CONTACTS.html">Contacts</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="CONTACTS.html" class="btn-contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ========== LESSON HERO ========== -->
+  <section class="lesson-hero">
+    <div class="math-left">V<sub>n</sub> = V<sub>0</sub> &times; (1 &minus; r)<sup>n</sup></div>
+    <div class="math-right">r = 1 &minus; (V<sub>n</sub> &divide; V<sub>0</sub>)<sup>1/n</sup></div>
+
+    <h1>Depreciation</h1>
+    <p class="tagline">Lesson 03 &nbsp;&bull;&nbsp; Understanding How Assets Lose Value Over Time</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- ========== LESSON CONTENT ========== -->
+  <div class="lesson-content">
+    <div class="content-card">
+
+      <!-- 1 -->
+      <h2>1. What is Depreciation?</h2>
+      <p>
+        <strong>Depreciation</strong> is the gradual decrease in the value of an asset over time due to wear and tear, 
+        age, or obsolescence. Almost every physical asset cars, machines, computers, furniture, and buildings 
+        loses value as time passes.
+      </p>
+
+      <div class="definition">
+        In mathematics, when an asset loses value by a <strong>fixed percentage</strong> of its current value each year, 
+        the successive values form a <strong>geometric sequence</strong> with a common ratio less than 1.
+      </div>
+
+      <p>There are two common methods of calculating depreciation:</p>
+      <ul>
+        <li><strong>Straight-Line Method</strong> the asset loses the same amount of value every year.</li>
+        <li><strong>Reducing-Balance (Declining-Balance) Method</strong> the asset loses a fixed percentage of its 
+            <em>current</em> value every year. This method produces a geometric sequence.</li>
+      </ul>
+
+      <p>
+        In this lesson we focus on the <strong>Reducing-Balance Method</strong> because it is modeled directly 
+        by geometric sequences and series.
+      </p>
+
+      <!-- 2 -->
+      <h2>2. The Reducing-Balance Depreciation Model</h2>
+      <p>Let:</p>
+      <ul>
+        <li><strong>V<sub>0</sub></strong> = original (purchase) value of the asset</li>
+        <li><strong>r</strong> = annual depreciation rate (as a decimal)</li>
+        <li><strong>n</strong> = number of years</li>
+        <li><strong>V<sub>n</sub></strong> = value of the asset after n years (also called the <em>book value</em>)</li>
+      </ul>
+
+      <p>The value after n years is given by:</p>
+
+      <div class="formula-box">
+        V<sub>n</sub> = V<sub>0</sub> &times; (1 &minus; r)<sup>n</sup>
+      </div>
+
+      <p>
+        Here the common ratio of the geometric sequence is <strong>(1 &minus; r)</strong>, which is always 
+        between 0 and 1 when the asset is depreciating.
+      </p>
+
+      <div class="note-box">
+        <strong>Note:</strong> The amount of depreciation in any year is not constant. 
+        It is largest in the first year and becomes smaller in later years.
+      </div>
+
+      <!-- 3 -->
+      <h2>3. Finding the Value After n Years</h2>
+
+      <div class="example-box">
+        <h4>Example 1 &ndash; Car Depreciation</h4>
+        <p>
+          A car is bought for $25 000. It depreciates at 15% per year. 
+          What will the car be worth after 5 years?
+        </p>
+        <div class="step">
+          <strong>Given:</strong><br>
+          V<sub>0</sub> = 25 000<br>
+          r = 15% = 0.15<br>
+          n = 5
+        </div>
+        <div class="step">
+          <strong>Solution:</strong><br>
+          V<sub>5</sub> = 25 000 &times; (1 &minus; 0.15)<sup>5</sup><br>
+          V<sub>5</sub> = 25 000 &times; (0.85)<sup>5</sup><br>
+          V<sub>5</sub> = 25 000 &times; 0.443705<br>
+          V<sub>5</sub> &approx; <strong>$11 093</strong>
+        </div>
+        <p>After 5 years the car will be worth approximately $11 093.</p>
+      </div>
+
+      <div class="example-box">
+        <h4>Example 2 &ndash; Machine Depreciation</h4>
+        <p>
+          A machine costs $48 000 and depreciates at 12% per annum on the reducing-balance method. 
+          Find its value after 4 years.
+        </p>
+        <div class="step">
+          V<sub>4</sub> = 48 000 &times; (1 &minus; 0.12)<sup>4</sup><br>
+          V<sub>4</sub> = 48 000 &times; (0.88)<sup>4</sup><br>
+          V<sub>4</sub> = 48 000 &times; 0.599695<br>
+          V<sub>4</sub> &approx; <strong>$28 785</strong>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <h2>4. Finding the Depreciation Rate</h2>
+      <p>
+        Sometimes we know the original value and the value after a certain number of years, 
+        and we need to find the annual depreciation rate.
+      </p>
+
+      <div class="formula-box">
+        r = 1 &minus; (V<sub>n</sub> &divide; V<sub>0</sub>)<sup>1/n</sup>
+      </div>
+
+      <div class="example-box">
+        <h4>Example 3 &ndash; Finding the Rate</h4>
+        <p>
+          A computer was purchased for $1 800. After 3 years its book value is $900. 
+          Calculate the annual depreciation rate.
+        </p>
+        <div class="step">
+          V<sub>0</sub> = 1 800<br>
+          V<sub>3</sub> = 900<br>
+          n = 3
+        </div>
+        <div class="step">
+          r = 1 &minus; (900 &divide; 1 800)<sup>1/3</sup><br>
+          r = 1 &minus; (0.5)<sup>1/3</sup><br>
+          r = 1 &minus; 0.7937<br>
+          r &approx; <strong>0.2063</strong> or <strong>20.63%</strong>
+        </div>
+        <p>The computer depreciates at approximately 20.63% per year.</p>
+      </div>
+
+      <!-- 5 -->
+      <h2>5. Scrap Value (Residual Value)</h2>
+      <p>
+        The <strong>scrap value</strong> (or residual value) is the estimated value of an asset at the end of its 
+        useful life. It is the lowest value the asset is expected to reach.
+      </p>
+
+      <div class="example-box">
+        <h4>Example 4 &ndash; Time to Reach Scrap Value</h4>
+        <p>
+          A piece of equipment costs $12 000 and depreciates at 20% per year. 
+          Its scrap value is $1 500. After how many full years will its value first fall below $1 500?
+        </p>
+        <div class="step">
+          We solve: 12 000 &times; (0.80)<sup>n</sup> &lt; 1 500<br>
+          (0.80)<sup>n</sup> &lt; 1 500 &divide; 12 000<br>
+          (0.80)<sup>n</sup> &lt; 0.125
+        </div>
+        <div class="step">
+          Take logarithms:<br>
+          n &times; log(0.80) &lt; log(0.125)<br>
+          n &gt; log(0.125) &divide; log(0.80)&nbsp;&nbsp; (sign reverses because log(0.80) is negative)<br>
+          n &gt; 9.64
+        </div>
+        <p>The value first falls below $1 500 after <strong>10 years</strong>.</p>
+      </div>
+
+      <!-- 6 -->
+      <h2>6. Comparing Straight-Line and Reducing-Balance Methods</h2>
+      <p>
+        Although both methods reduce the value of an asset, they behave differently:
+      </p>
+      <ul>
+        <li><strong>Straight-Line</strong>  equal amount of depreciation each year. Easy to calculate but less realistic for many assets.</li>
+        <li><strong>Reducing-Balance</strong>  higher depreciation in the early years and lower depreciation later. 
+            This often matches the real loss of value more closely (especially for cars and technology).</li>
+      </ul>
+
+      <div class="note-box">
+        <strong>Why reducing-balance is geometric:</strong><br>
+        Each year the value is multiplied by the same factor (1 &minus; r). 
+        This repeated multiplication is exactly the definition of a geometric sequence.
+      </div>
+
+      <!-- 7 -->
+      <h2>7. Real-Life Applications</h2>
+      <ul>
+        <li><strong>Vehicles</strong>  cars and trucks lose a large percentage of their value in the first few years.</li>
+        <li><strong>Electronics</strong>  phones, laptops and computers become outdated quickly.</li>
+        <li><strong>Industrial Machinery</strong>  factories calculate depreciation for accounting and tax purposes.</li>
+        <li><strong>Furniture &amp; Equipment</strong>  offices and schools track the declining value of assets.</li>
+        <li><strong>Tax &amp; Accounting</strong>  governments allow businesses to claim depreciation as an expense.</li>
+      </ul>
+
+      <!-- 8 -->
+      <h2>8. Summary of Key Formulas</h2>
+
+      <div class="formula-box">
+        Value after n years:&nbsp;&nbsp; V<sub>n</sub> = V<sub>0</sub> &times; (1 &minus; r)<sup>n</sup>
+      </div>
+
+      <div class="formula-box">
+        Depreciation rate:&nbsp;&nbsp; r = 1 &minus; (V<sub>n</sub> &divide; V<sub>0</sub>)<sup>1/n</sup>
+      </div>
+
+      <div class="formula-box">
+        Depreciation in year k:&nbsp;&nbsp; D<sub>k</sub> = V<sub>0</sub> &times; r &times; (1 &minus; r)<sup>k&minus;1</sup>
+      </div>
+
+      <!-- 9 -->
+      <h2>9. Practice Questions</h2>
+      <ol>
+        <li>
+          A motorcycle is bought for $9 500 and depreciates at 18% per year. 
+          What will it be worth after 4 years?
+        </li>
+        <li>
+          A printer costs $2 400. After 5 years its book value is $600. 
+          Calculate the annual depreciation rate.
+        </li>
+        <li>
+          A company buys a machine for $60 000. It depreciates at 10% per annum on the reducing-balance method. 
+          Find the book value after 6 years.
+        </li>
+        <li>
+          An asset purchased for $15 000 has a scrap value of $2 000. It depreciates at 25% per year. 
+          After how many full years will its value first drop below the scrap value?
+        </li>
+        <li>
+          A laptop costs $1 200 and loses 22% of its value each year. 
+          How much depreciation occurs in the third year?
+        </li>
+      </ol>
+
+      <div class="btn-row">
+        <a href="LESSON222.html" class="btn-outline">
+          <i class="fas fa-arrow-left"></i> Previous Lesson
+        </a>
+        <a href="LESSON.html" class="btn-outline">
+          <i class="fas fa-th-large"></i> All Lessons
+        </a>
+        <a href="QUIZPAGE.html#quizzes" class="btn-primary">
+          <i class="fas fa-question-circle"></i> Take the Quizzes
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h3>SeqNova</h3>
+          <p>Exploring the Applications of Sequences and Series</p>
+        </div>
+      </div>
+
+      <div class="footer-tagline">
+        <strong>Mathematics &bull; Growth &bull; Change</strong><br>
+        A brighter understanding for a better future.
+      </div>
+
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 SeqNova. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

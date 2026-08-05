@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to Geometric Sequences and Series – SeqNova</title>
+   <link rel="stylesheet" href="NOVA/LESSONSSS.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+</head>
+<script>
+  // Map of search keywords → page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle active">Lessons <i class="fas fa-chevron-down" style="font-size:0.65rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.html">1. Introduction to Geometric Sequences &amp; Series</a>
+          <a href="LESSON222.HTML">2. Population Growth</a>
+          <a href="LESSON333.HTML">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.html#quizzes">Quizzes</a></li>
+      <li><a href="ABOUTUS.html">About Us</a></li>
+      <li><a href="CONTACTS.html">Contacts</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="CONTACTS.html" class="btn-contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ========== LESSON HERO ========== -->
+  <section class="lesson-hero">
+    <div class="math-left">a<sub>n</sub> = a<sub>1</sub> &times; r<sup>n&minus;1</sup></div>
+    <div class="math-right">S<sub>n</sub> = a<sub>1</sub> (r<sup>n</sup> &minus; 1) &divide; (r &minus; 1)</div>
+
+    <h1>Introduction to Application of<br>Geometric Sequences and Series</h1>
+    <p class="tagline">Lesson 01 &nbsp;&bull;&nbsp; Building Strong Foundations</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- ========== LESSON CONTENT ========== -->
+  <div class="lesson-content">
+    <div class="content-card">
+
+      <!-- 1 -->
+      <h2>1. What is a Sequence?</h2>
+      <p>
+        A <strong>sequence</strong> is an ordered list of numbers that follow a particular pattern or rule. 
+        Each number in the sequence is called a <strong>term</strong>. Sequences can be finite (having a limited number of terms) 
+        or infinite (continuing forever).
+      </p>
+      <p>
+        There are two main types of sequences you will meet in mathematics:
+      </p>
+      <ul>
+        <li><strong>Arithmetic Sequence</strong> &ndash; each term is obtained by <em>adding</em> a constant number (common difference).</li>
+        <li><strong>Geometric Sequence</strong> &ndash; each term is obtained by <em>multiplying</em> by a constant number (common ratio).</li>
+      </ul>
+
+      <!-- 2 -->
+      <h2>2. What is a Geometric Sequence?</h2>
+      <div class="definition">
+        A <strong>geometric sequence</strong> (also called a geometric progression) is a sequence in which each term 
+        after the first is found by multiplying the previous term by a fixed, non-zero number called the 
+        <strong>common ratio</strong> (denoted by <em>r</em>).
+      </div>
+
+      <p>The general form of a geometric sequence is:</p>
+
+      <div class="formula-box">
+        a,&nbsp;&nbsp; ar,&nbsp;&nbsp; ar<sup>2</sup>,&nbsp;&nbsp; ar<sup>3</sup>,&nbsp;&nbsp; ar<sup>4</sup>,&nbsp;&nbsp; ar<sup>5</sup>,&nbsp;&nbsp; &hellip;
+      </div>
+
+      <p>Where:</p>
+      <ul>
+        <li><strong>a</strong> or <strong>a<sub>1</sub></strong> = the first term</li>
+        <li><strong>r</strong> = the common ratio</li>
+        <li><strong>a<sub>n</sub></strong> = the n<sup>th</sup> term</li>
+        <li><strong>n</strong> = the position of the term in the sequence</li>
+      </ul>
+
+      <h3>How to find the Common Ratio</h3>
+      <p>
+        The common ratio is found by dividing any term by the term that comes before it:
+      </p>
+      <div class="formula-box">
+        r = a<sub>2</sub> &divide; a<sub>1</sub> = a<sub>3</sub> &divide; a<sub>2</sub> = a<sub>4</sub> &divide; a<sub>3</sub> = &hellip;
+      </div>
+
+      <div class="example-box">
+        <h4>Example 1 &ndash; Identifying a Geometric Sequence</h4>
+        <p>Is the sequence 5, 10, 20, 40, 80, &hellip; geometric?</p>
+        <div class="step">
+          Check the ratio between consecutive terms:<br>
+          10 &divide; 5 = 2<br>
+          20 &divide; 10 = 2<br>
+          40 &divide; 20 = 2<br>
+          80 &divide; 40 = 2
+        </div>
+        <p>Since the ratio is constant (r = 2), the sequence <strong>is geometric</strong>.</p>
+      </div>
+
+      <div class="example-box">
+        <h4>Example 2 &ndash; Finding the Common Ratio</h4>
+        <p>Find the common ratio of the sequence: 81, 27, 9, 3, 1, &hellip;</p>
+        <div class="step">
+          r = 27 &divide; 81 = 1/3<br>
+          Check: 9 &divide; 27 = 1/3,&nbsp;&nbsp; 3 &divide; 9 = 1/3,&nbsp;&nbsp; 1 &divide; 3 = 1/3
+        </div>
+        <p>The common ratio is <strong>r = 1/3</strong> (or approximately 0.333).</p>
+      </div>
+
+      <!-- 3 -->
+      <h2>3. The n<sup>th</sup> Term Formula</h2>
+      <p>
+        Instead of writing out every term, we can find any term directly using the general formula:
+      </p>
+
+      <div class="formula-box">
+        a<sub>n</sub> = a<sub>1</sub> &times; r<sup>n&minus;1</sup>
+      </div>
+
+      <p>This formula is one of the most important tools in geometric sequences.</p>
+
+      <div class="example-box">
+        <h4>Example 3 &ndash; Finding a Specific Term</h4>
+        <p>Find the 8<sup>th</sup> term of the geometric sequence: 3, 6, 12, 24, &hellip;</p>
+        <div class="step">
+          <strong>Step 1:</strong> Identify a<sub>1</sub> and r<br>
+          a<sub>1</sub> = 3<br>
+          r = 6 &divide; 3 = 2
+        </div>
+        <div class="step">
+          <strong>Step 2:</strong> Apply the formula<br>
+          a<sub>8</sub> = 3 &times; 2<sup>8&minus;1</sup> = 3 &times; 2<sup>7</sup> = 3 &times; 128 = <strong>384</strong>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <h4>Example 4 &ndash; Finding a Term when r is a Fraction</h4>
+        <p>Find the 6<sup>th</sup> term of the sequence: 64, 32, 16, 8, &hellip;</p>
+        <div class="step">
+          a<sub>1</sub> = 64,&nbsp;&nbsp; r = 32 &divide; 64 = 1/2
+        </div>
+        <div class="step">
+          a<sub>6</sub> = 64 &times; (1/2)<sup>5</sup> = 64 &times; 1/32 = <strong>2</strong>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <h2>4. Geometric Series</h2>
+      <p>
+        When we <strong>add</strong> the terms of a geometric sequence, we obtain a <strong>geometric series</strong>.
+      </p>
+
+      <div class="formula-box">
+        S<sub>n</sub> = a<sub>1</sub> + a<sub>1</sub>r + a<sub>1</sub>r<sup>2</sup> + a<sub>1</sub>r<sup>3</sup> + &hellip; + a<sub>1</sub>r<sup>n&minus;1</sup>
+      </div>
+
+      <h3>Sum of the First n Terms</h3>
+      <p>There are two important formulas depending on the value of r:</p>
+
+      <div class="formula-box">
+        S<sub>n</sub> = a<sub>1</sub> (r<sup>n</sup> &minus; 1) &divide; (r &minus; 1)&nbsp;&nbsp;&nbsp; when r &ne; 1
+      </div>
+
+      <div class="formula-box">
+        S<sub>n</sub> = n &times; a<sub>1</sub>&nbsp;&nbsp;&nbsp; when r = 1
+      </div>
+
+      <div class="note-box">
+        <strong>Tip:</strong> An alternative form of the sum formula is<br>
+        S<sub>n</sub> = a<sub>1</sub> (1 &minus; r<sup>n</sup>) &divide; (1 &minus; r)&nbsp;&nbsp; (useful when |r| &lt; 1)
+      </div>
+
+      <div class="example-box">
+        <h4>Example 5 &ndash; Sum of a Finite Geometric Series</h4>
+        <p>Find the sum of the first 6 terms of the sequence: 2, 6, 18, 54, &hellip;</p>
+        <div class="step">
+          a<sub>1</sub> = 2,&nbsp;&nbsp; r = 3,&nbsp;&nbsp; n = 6
+        </div>
+        <div class="step">
+          S<sub>6</sub> = 2 (3<sup>6</sup> &minus; 1) &divide; (3 &minus; 1)<br>
+          S<sub>6</sub> = 2 (729 &minus; 1) &divide; 2<br>
+          S<sub>6</sub> = 2 &times; 728 &divide; 2 = <strong>728</strong>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <h4>Example 6 &ndash; Sum when r is Negative</h4>
+        <p>Find the sum of the first 5 terms of: 4, &minus;8, 16, &minus;32, &hellip;</p>
+        <div class="step">
+          a<sub>1</sub> = 4,&nbsp;&nbsp; r = &minus;2,&nbsp;&nbsp; n = 5
+        </div>
+        <div class="step">
+          S<sub>5</sub> = 4 [(&minus;2)<sup>5</sup> &minus; 1] &divide; (&minus;2 &minus; 1)<br>
+          S<sub>5</sub> = 4 (&minus;32 &minus; 1) &divide; (&minus;3)<br>
+          S<sub>5</sub> = 4 (&minus;33) &divide; (&minus;3) = 4 &times; 11 = <strong>44</strong>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <h2>5. Infinite Geometric Series</h2>
+      <p>
+        An infinite geometric series continues forever. Whether it has a finite sum depends on the common ratio.
+      </p>
+
+      <div class="definition">
+        If <strong>|r| &lt; 1</strong>, the infinite geometric series <strong>converges</strong> and its sum is finite.<br>
+        If <strong>|r| &ge; 1</strong>, the series <strong>diverges</strong> (the sum grows without limit).
+      </div>
+
+      <div class="formula-box">
+        S<sub>&infin;</sub> = a<sub>1</sub> &divide; (1 &minus; r)&nbsp;&nbsp;&nbsp; when |r| &lt; 1
+      </div>
+
+      <div class="example-box">
+        <h4>Example 7 &ndash; Infinite Series</h4>
+        <p>Find the sum of the infinite series: 9 + 3 + 1 + 1/3 + 1/9 + &hellip;</p>
+        <div class="step">
+          a<sub>1</sub> = 9,&nbsp;&nbsp; r = 3 &divide; 9 = 1/3
+        </div>
+        <div class="step">
+          Since |1/3| &lt; 1, the series converges.<br>
+          S<sub>&infin;</sub> = 9 &divide; (1 &minus; 1/3) = 9 &divide; (2/3) = 9 &times; 3/2 = <strong>13.5</strong>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <strong>Important:</strong> Always check the value of |r| before using the infinite sum formula. 
+        If |r| &ge; 1, the formula cannot be applied.
+      </div>
+
+      <!-- 6 -->
+      <h2>6. Real-Life Applications of Geometric Sequences &amp; Series</h2>
+      <p>
+        Geometric sequences and series are not just abstract mathematics — they appear in many practical situations.
+      </p>
+
+      <h3>6.1 Compound Interest</h3>
+      <p>
+        When money is invested at compound interest, the amount grows geometrically.
+      </p>
+      <div class="formula-box">
+        A = P (1 + r)<sup>n</sup>
+      </div>
+      <p>where P = principal, r = interest rate per period, n = number of periods.</p>
+
+      <div class="example-box">
+        <h4>Example 8</h4>
+        <p>You invest $2 000 at 5% compound interest per year. How much will you have after 4 years?</p>
+        <div class="step">
+          A = 2000 (1 + 0.05)<sup>4</sup> = 2000 (1.05)<sup>4</sup> = 2000 &times; 1.21550625 &approx; <strong>$2 431.01</strong>
+        </div>
+      </div>
+
+      <h3>6.2 Population Growth</h3>
+      <p>
+        Populations of bacteria, animals or people often increase by a roughly constant percentage each year, 
+        forming a geometric sequence.
+      </p>
+
+      <h3>6.3 Depreciation of Assets</h3>
+      <p>
+        Cars, machinery and electronic devices lose value over time. If the value decreases by a fixed percentage 
+        each year, the values form a geometric sequence (with 0 &lt; r &lt; 1).
+      </p>
+
+      <h3>6.4 Radioactive Decay</h3>
+      <p>
+        The amount of a radioactive substance remaining after successive half-lives follows a geometric sequence 
+        with r = 1/2.
+      </p>
+
+      <h3>6.5 Other Applications</h3>
+      <ul>
+        <li>Spread of viruses or information on social media</li>
+        <li>Fractals and self-similar patterns in nature (trees, coastlines, snowflakes)</li>
+        <li>Loan repayments and annuities</li>
+        <li>Sound intensity and musical scales</li>
+      </ul>
+
+      <!-- 7 -->
+      <h2>7. Summary of Key Formulas</h2>
+
+      <div class="formula-box">
+        n<sup>th</sup> term:&nbsp;&nbsp; a<sub>n</sub> = a<sub>1</sub> &times; r<sup>n&minus;1</sup>
+      </div>
+
+      <div class="formula-box">
+        Sum of first n terms:&nbsp;&nbsp; S<sub>n</sub> = a<sub>1</sub> (r<sup>n</sup> &minus; 1) &divide; (r &minus; 1)&nbsp;&nbsp; (r &ne; 1)
+      </div>
+
+      <div class="formula-box">
+        Infinite sum:&nbsp;&nbsp; S<sub>&infin;</sub> = a<sub>1</sub> &divide; (1 &minus; r)&nbsp;&nbsp; (|r| &lt; 1)
+      </div>
+
+      <div class="formula-box">
+        Common ratio:&nbsp;&nbsp; r = a<sub>n+1</sub> &divide; a<sub>n</sub>
+      </div>
+
+      <!-- 8 -->
+      <h2>8. Practice Questions</h2>
+      <ol>
+        <li>Find the 10<sup>th</sup> term of the geometric sequence: 2, 6, 18, 54, &hellip;</li>
+        <li>Find the sum of the first 7 terms of the sequence: 5, 10, 20, 40, &hellip;</li>
+        <li>Does the infinite series 1 + 1/2 + 1/4 + 1/8 + &hellip; converge? If yes, find its sum.</li>
+        <li>A car costs $25 000 and depreciates by 15% each year. What will it be worth after 5 years?</li>
+        <li>Find the common ratio and the 6<sup>th</sup> term of: 81, &minus;27, 9, &minus;3, &hellip;</li>
+      </ol>
+
+      <div class="btn-row">
+        <a href="LESSON222.HTML" class="btn-primary">
+          <i class="fas fa-arrow-right"></i> Next Lesson: Population Growth
+        </a>
+        <a href="LESSON.HTML.html" class="btn-outline">
+          <i class="fas fa-th-large"></i> Back to All Lessons
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h3>SeqNova</h3>
+          <p>Exploring the Applications of Sequences and Series</p>
+        </div>
+      </div>
+
+      <div class="footer-tagline">
+        <strong>Mathematics &bull; Growth &bull; Change</strong><br>
+        A brighter understanding for a better future.
+      </div>
+
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 SeqNova. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

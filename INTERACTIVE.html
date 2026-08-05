@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Learning � SeqNova</title>
+   <link rel="stylesheet" href="NOVA/INTERACTIVE.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+</head>
+<script>
+  // Map of search keywords ? page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ABOUTUS.html">About</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle">Lessons <i class="fas fa-chevron-down" style="font-size:0.65rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.HTML">1. Introduction to Geometric Sequences &amp; Series</a>
+          <a href="LESSON222.HTML">2. Population Growth</a>
+          <a href="LESSON333.HTML">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.HTML">Quizzes</a></li>
+      <li><a href="PRACTICEPAGE.html">Practice</a></li>
+      <li><a href="INTERACTIVE.html" class="active">Interactive</a></li>
+      <li><a href="CONTACTS.html">Contacts</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search...">
+      </div>
+      <a href="CONTACTS.html" class="btn-contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="interactive-hero">
+    <div class="math-left">a<sub>n</sub> = a<sub>1</sub> &times; r<sup>n&minus;1</sup></div>
+    <div class="math-right">P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup></div>
+    <h1>Interactive Learning</h1>
+    <p class="tagline">Explore, Graph &amp; Experiment</p>
+    <p>Use GeoGebra, Desmos, and trusted online math resources to visualise geometric sequences, population growth, and depreciation.</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- ========== CONTENT ========== -->
+  <section class="interactive-section">
+
+    <div class="topic-nav">
+      <a href="#intro">1. Introduction</a>
+      <a href="#population">2. Population Growth</a>
+      <a href="#depreciation">3. Depreciation</a>
+    </div>
+
+    <!-- ========== LESSON 1 ========== -->
+    <div class="topic-block" id="intro">
+      <div class="topic-header">
+        <div class="topic-icon intro"><i class="fas fa-book-open"></i></div>
+        <div>
+          <h2>Lesson 1  Geometric Sequences &amp; Series</h2>
+          <p>Visualise terms, common ratio, and sums interactively</p>
+        </div>
+      </div>
+
+      <!-- GeoGebra -->
+      <div class="activity-card">
+        <div class="activity-header">
+          <span class="activity-badge badge-geogebra"><i class="fas fa-shapes"></i> GeoGebra</span>
+          <h3>Geometric Sequence Explorer</h3>
+        </div>
+        <div class="activity-body">
+          <p>
+            Drag sliders to change the first term and common ratio. Watch the sequence points and the curve update in real time.
+          </p>
+          <div class="embed-wrap">
+            <iframe
+              src="https://www.geogebra.org/material/iframe/id/qfqjnj2e/width/800/height/500/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false"
+              allowfullscreen
+              title="GeoGebra Geometric Sequence">
+            </iframe>
+          </div>
+          <div class="how-to">
+            <strong>How to use:</strong>
+            <ol>
+              <li>Adjust <em>a</em> (first term) and <em>r</em> (common ratio) with the sliders.</li>
+              <li>Observe how the plotted points move when |r| &gt; 1 (growth) or |r| &lt; 1 (decay).</li>
+              <li>Try r = 2, r = 0.5, and r = -1 to compare patterns.</li>
+            </ol>
+          </div>
+          <a href="https://www.geogebra.org/m/qfqjnj2e" target="_blank" rel="noopener" class="open-link">
+            <i class="fas fa-external-link-alt"></i> Open full GeoGebra activity
+          </a>
+        </div>
+      </div>
+
+      <!-- Desmos -->
+      <div class="activity-card">
+        <div class="activity-header">
+          <span class="activity-badge badge-desmos"><i class="fas fa-chart-area"></i> Desmos</span>
+          <h3>Graph Geometric Sequences</h3>
+        </div>
+        <div class="activity-body">
+          <p>
+            Use Desmos to plot a<sub>n</sub> = a<sub>1</sub>  r<sup>n-1</sup> and explore how the graph changes with different values of a<sub>1</sub> and r.
+          </p>
+          <div class="embed-wrap tall">
+            <iframe
+              src="https://www.desmos.com/calculator/y8q8kqvj0x?embed"
+              title="Desmos Geometric Sequence Graph"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="how-to">
+            <strong>Try this:</strong>
+            <ol>
+              <li>Enter <code>a = 3</code> and <code>r = 2</code>, then plot <code>y = a r^{x-1}</code> for x = 1, 2, 3, </li>
+              <li>Change r to 0.5 and see the sequence decrease.</li>
+              <li>Use a table to list the first 8 terms of your sequence.</li>
+            </ol>
+          </div>
+          <a href="https://www.desmos.com/calculator" target="_blank" rel="noopener" class="open-link">
+            <i class="fas fa-external-link-alt"></i> Open Desmos Graphing Calculator
+          </a>
+        </div>
+      </div>
+
+      <!-- Online resource -->
+      <div class="activity-card">
+        <div class="activity-header">
+          <span class="activity-badge badge-resource"><i class="fas fa-globe"></i> Online Resource</span>
+          <h3>Learn &amp; Practise  Geometric Sequences</h3>
+        </div>
+        <div class="activity-body">
+          <p>Trusted external resources for deeper understanding and extra practice.</p>
+          <div class="resource-grid">
+            <div class="resource-item">
+              <h4><i class="fas fa-play-circle"></i> Khan Academy</h4>
+              <p>Video lessons and practice on geometric sequences and series.</p>
+              <a href="https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:sequences" target="_blank" rel="noopener">Open Khan Academy ?</a>
+            </div>
+            <div class="resource-item">
+              <h4><i class="fas fa-book"></i> Math is Fun</h4>
+              <p>Clear explanations of geometric sequences with interactive examples.</p>
+              <a href="https://www.mathsisfun.com/algebra/sequences-series.html" target="_blank" rel="noopener">Open Maths is Fun ?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== LESSON 2 ========== -->
+    <div class="topic-block" id="population">
+      <div class="topic-header">
+        <div class="topic-icon pop"><i class="fas fa-users"></i></div>
+        <div>
+          <h2>Lesson 2 Population Growth</h2>
+          <p>Model and graph exponential growth interactively</p>
+        </div>
+      </div>
+
+      <!-- Desmos growth -->
+      <div class="activity-card">
+        <div class="activity-header">
+          <span class="activity-badge badge-desmos"><i class="fas fa-chart-area"></i> Desmos</span>
+          <h3>Population Growth Graph</h3>
+        </div>
+        <div class="activity-body">
+          <p>
+            Graph P(n) = P<sub>0</sub> (1 + r)<sup>n</sup>. Change the initial population and growth rate to see how the curve steepens or flattens.
+          </p>
+          <div class="embed-wrap tall">
+            <iframe
+              src="https://www.desmos.com/calculator?embed"
+              title="Desmos Population Growth"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="how-to">
+            <strong>Suggested setup:</strong>
+            <ol>
+              <li>Define <code>P_0 = 1000</code> and <code>r = 0.05</code> (5% growth).</li>
+              <li>Plot <code>y = P_0 (1 + r)^x</code> for x = 0.</li>
+              <li>Add a table of values for years 0 to 10 and compare with the curve.</li>
+              <li>Increase r to 0.10 and observe faster growth.</li>
+            </ol>
+          </div>
+          <a href="https://www.desmos.com/calculator" target="_blank" rel="noopener" class="open-link">
+            <i class="fas fa-external-link-alt"></i> Open Desmos
+          </a>
+        </div>
+      </div>
+
+      <!-- GeoGebra growth -->
+      <div class="activity-card">
+        <div class="activity-header">
+          <span class="activity-badge badge-geogebra"><i class="fas fa-shapes"></i> GeoGebra</span>
+          <h3>Exponential Growth Activity</h3>
+        </div>
+        <div class="activity-body">
+          <p>
+            Explore exponential (geometric) growth with an interactive GeoGebra worksheet. Adjust parameters and see population change over time.
+          </p>
+          <div class="embed-wrap">
+            <iframe
+              src="https://www.geogebra.org/material/iframe/id/qfqjnj2e/width/800/height/480/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false"
+              allowfullscreen
+              title="GeoGebra Growth Model">
+            </iframe>
+          </div>
+          <div class="how-to">
+            <strong>Focus:</strong> Treat the common ratio as (1 + growth rate). For 4% growth, use r = 1.04 and compare the discrete points with a continuous exponential curve.
+          </div>
+          <a href="https://www.geogebra.org/classic" target="_blank" rel="noopener" class="open-link">
+            <i class="fas fa-external-link-alt"></i> Open GeoGebra Classic
+          </a>
+        </div>
+      </div>
+
+      <!-- Online resource -->
+      <div class="activity-card">
+        <div class="activity-header">
+          <span class="activity-badge badge-resource"><i class="fas fa-globe"></i> Online Resource</span>
+          <h3>Population &amp; Exponential Growth</h3>
+        </div>
+        <div class="activity-body">
+          <div class="resource-grid">
+            <div class="resource-item">
+              <h4><i class="fas fa-play-circle"></i> Khan Academy  Exponential Growth</h4>
+              <p>Videos and exercises on exponential growth models linked to real populations.</p>
+              <a href="https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:exponential" target="_blank" rel="noopener">Open resource ?</a>
+            </div>
+            <div class="resource-item">
+              <h4><i class="fas fa-chart-line"></i> PhET Exponential Growth</h4>
+              <p>Interactive simulation of population and exponential processes (requires modern browser).</p>
+              <a href="https://phet.colorado.edu/en/simulations/filter?subjects=math&type=html" target="_blank" rel="noopener">Browse PhET maths ?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== LESSON 3 ========== -->
+    <div class="topic-block" id="depreciation">
+      <div class="topic-header">
+        <div class="topic-icon dep"><i class="fas fa-car"></i></div>
+        <div>
+          <h2>Lesson 3  Depreciation</h2>
+          <p>Visualise reducing-balance decay over time</p>
+        </div>
+      </div>
+
+      <!-- Desmos depreciation -->
+      <div class="activity-card">
+        <div class="activity-header">
+          <span class="activity-badge badge-desmos"><i class="fas fa-chart-area"></i> Desmos</span>
+          <h3>Depreciation (Decay) Graph</h3>
+        </div>
+        <div class="activity-body">
+          <p>
+            Graph V(n) = V<sub>0</sub> (1 - r)<sup>n</sup> to see how book value falls. Compare different depreciation rates side by side.
+          </p>
+          <div class="embed-wrap tall">
+            <iframe
+              src="https://www.desmos.com/calculator?embed"
+              title="Desmos Depreciation Graph"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="how-to">
+            <strong>Suggested setup:</strong>
+            <ol>
+              <li>Set <code>V_0 = 20000</code> and <code>r = 0.15</code> (15% depreciation).</li>
+              <li>Plot <code>y = V_0 (1 - r)^x</code> for x = 0.</li>
+              <li>Add a second curve with r = 0.10 and compare how quickly value falls.</li>
+              <li>Use a table to list book values for years 0 8.</li>
+            </ol>
+          </div>
+          <a href="https://www.desmos.com/calculator" target="_blank" rel="noopener" class="open-link">
+            <i class="fas fa-external-link-alt"></i> Open Desmos
+          </a>
+        </div>
+      </div>
+
+      <!-- GeoGebra decay -->
+      <div class="activity-card">
+        <div class="activity-header">
+          <span class="activity-badge badge-geogebra"><i class="fas fa-shapes"></i> GeoGebra</span>
+          <h3>Geometric Decay Activity</h3>
+        </div>
+        <div class="activity-body">
+          <p>
+            Use GeoGebra to model geometric decay. Change the common ratio to values between 0 and 1 and watch the sequence decrease.
+          </p>
+          <div class="embed-wrap">
+            <iframe
+              src="https://www.geogebra.org/material/iframe/id/qfqjnj2e/width/800/height/480/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false"
+              allowfullscreen
+              title="GeoGebra Geometric Decay">
+            </iframe>
+          </div>
+          <div class="how-to">
+            <strong>Focus:</strong> Set the common ratio to 0.85 (15% depreciation) or 0.90 (10% depreciation). Compare with growth models from Lesson 2.
+          </div>
+          <a href="https://www.geogebra.org/classic" target="_blank" rel="noopener" class="open-link">
+            <i class="fas fa-external-link-alt"></i> Open GeoGebra Classic
+          </a>
+        </div>
+      </div>
+
+      <!-- Online resource -->
+      <div class="activity-card">
+        <div class="activity-header">
+          <span class="activity-badge badge-resource"><i class="fas fa-globe"></i> Online Resource</span>
+          <h3>Depreciation &amp; Exponential Decay</h3>
+        </div>
+        <div class="activity-body">
+          <div class="resource-grid">
+            <div class="resource-item">
+              <h4><i class="fas fa-play-circle"></i> Khan Academy  Exponential Decay</h4>
+              <p>Lessons on exponential decay that match the reducing-balance depreciation model.</p>
+              <a href="https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:exponential" target="_blank" rel="noopener">Open resource ?</a>
+            </div>
+            <div class="resource-item">
+              <h4><i class="fas fa-calculator"></i> SeqNova Calculator</h4>
+              <p>Use our Calculate page to compute book values and rates step by step.</p>
+              <a href="CALCULATE.html">Open Calculate page ?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h3>SeqNova</h3>
+          <p>Exploring the Applications of Sequences and Series</p>
+        </div>
+      </div>
+      <div class="footer-tagline">
+        <strong>Mathematics  Growth  Change</strong><br>
+        A brighter understanding for a better future.
+      </div>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      � 2026 SeqNova. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

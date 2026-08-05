@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Population Growth Quiz � SeqNova</title>
+     <link rel="stylesheet" href="NOVA/QUIZ1.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+</head>
+<script>
+  // Map of search keywords → page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="HOME.html">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle">Lessons <i class="fas fa-chevron-down" style="font-size:0.65rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.html">1. Introduction to Geometric Sequences &amp; Series</a>
+          <a href="LESSON222.html">2. Population Growth</a>
+          <a href="LESSON333.html">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.html" class="active">Quizzes</a></li>
+      <li><a href="ABOUTUS.html">About</a></li>
+      <li><a href="CONTACTS.html">Contact</a></li>
+    </ul>
+
+    <a href="QUIZPAGE.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Quizzes</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="quiz-hero">
+    <h1><i class="fas fa-users"></i> Population Growth Quiz</h1>
+    <p>Choose your difficulty level and test your knowledge</p>
+  </section>
+
+  <!-- LEVEL SELECTION -->
+  <section class="level-section" id="levelSection">
+    <div class="level-grid">
+      <div class="level-card easy" onClick="startQuiz('easy')">
+        <div class="level-header easy"><i class="fas fa-seedling"></i></div>
+        <div class="level-body">
+          <h3>Easy Level</h3>
+          <p>Basic formulas and simple calculations</p>
+          <div class="level-meta">8 Questions &nbsp;&bull;&nbsp; 10 Minutes</div>
+          <button class="btn-level"><i class="fas fa-play"></i> Start Easy Quiz</button>
+        </div>
+      </div>
+
+      <div class="level-card medium" onClick="startQuiz('medium')">
+        <div class="level-header medium"><i class="fas fa-chart-line"></i></div>
+        <div class="level-body">
+          <h3>Medium Level</h3>
+          <p>Growth rates, multi-step problems</p>
+          <div class="level-meta">12 Questions &nbsp;&bull;&nbsp; 18 Minutes</div>
+          <button class="btn-level"><i class="fas fa-play"></i> Start Medium Quiz</button>
+        </div>
+      </div>
+
+      <div class="level-card hard" onClick="startQuiz('hard')">
+        <div class="level-header hard"><i class="fas fa-fire"></i></div>
+        <div class="level-body">
+          <h3>Hard Level</h3>
+          <p>Doubling time, continuous growth &amp; analysis</p>
+          <div class="level-meta">10 Questions &nbsp;&bull;&nbsp; 25 Minutes</div>
+          <button class="btn-level"><i class="fas fa-play"></i> Start Hard Quiz</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ AREA -->
+  <section class="quiz-area" id="quizArea">
+    <div class="quiz-header">
+      <h2 id="quizTitle">Population Growth � Easy</h2>
+      <div class="timer" id="timer">10:00</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="question-card">
+      <div class="q-number" id="qNumber">Question 1 of 8</div>
+      <div class="q-text" id="qText"></div>
+      <div class="options" id="options"></div>
+      <div class="quiz-nav">
+        <button class="btn-nav btn-prev" id="btnPrev" onClick="prevQuestion()">? Previous</button>
+        <button class="btn-nav btn-next" id="btnNext" onClick="nextQuestion()">Next ?</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RESULTS AREA -->
+  <section class="results-area" id="resultsArea">
+    <div class="score-card">
+      <div class="score-circle">
+        <div class="percent" id="scorePercent">0%</div>
+        <div class="label">Score</div>
+      </div>
+      <h2 id="scoreMessage">Well done!</h2>
+      <div class="score-details" id="scoreDetails"></div>
+      <div class="improvement-note" id="improvementNote"></div>
+      <button class="btn-restart" onClick="location.reload()">
+        <i class="fas fa-redo"></i> Try Another Level
+      </button>
+    </div>
+
+    <div class="answers-review">
+      <h3><i class="fas fa-list-check"></i> Review Your Answers</h3>
+      <div id="reviewList"></div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 SeqNova. All rights reserved.
+  </footer>
+
+  <script>
+    // ========== QUESTIONS (with proper HTML entities) ==========
+    const questions = {
+      easy: [
+        {
+          q: "A town has 5 000 people and grows at 3% per year. What is the population after 1 year?",
+          options: ["5 150", "5 300", "5 000", "5 500"],
+          answer: 0
+        },
+        {
+          q: "In the formula P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup>, what does r represent?",
+          options: ["Initial population", "Growth rate (as a decimal)", "Number of years", "Final population"],
+          answer: 1
+        },
+        {
+          q: "If a population doubles every year, the common ratio is:",
+          options: ["1", "0.5", "2", "10"],
+          answer: 2
+        },
+        {
+          q: "A colony of 200 bacteria doubles every hour. How many bacteria after 3 hours?",
+          options: ["600", "800", "1 600", "400"],
+          answer: 2
+        },
+        {
+          q: "A population of 8 000 grows at 5% per year. What is the growth factor (1 + r)?",
+          options: ["0.05", "1.05", "5", "1.5"],
+          answer: 1
+        },
+        {
+          q: "Which formula is used for population after n years?",
+          options: ["P<sub>n</sub> = P<sub>0</sub> + r<sup>n</sup>", "P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup>", "P<sub>n</sub> = P<sub>0</sub> &times; r &times; n", "P<sub>n</sub> = P<sub>0</sub> &divide; (1 + r)<sup>n</sup>"],
+          answer: 1
+        },
+        {
+          q: "If r = 0.04, the annual growth rate is:",
+          options: ["0.4%", "4%", "40%", "4.0"],
+          answer: 1
+        },
+        {
+          q: "A village of 2 500 grows at 2% per year. Approximate population after 2 years?",
+          options: ["2 550", "2 601", "2 700", "2 500"],
+          answer: 1
+        }
+      ],
+      medium: [
+        {
+          q: "A city has 40 000 people and grows at 2.5% per year. What will the population be after 4 years? (nearest whole number)",
+          options: ["43 000", "44 152", "42 500", "45 000"],
+          answer: 1
+        },
+        {
+          q: "In 2015 a town had 12 000 residents. In 2020 it had 15 000. Approximate annual growth rate?",
+          options: ["5%", "4.6%", "3%", "6%"],
+          answer: 1
+        },
+        {
+          q: "A population grows from 5 000 to 8 000 in 6 years. Which equation finds r?",
+          options: ["r = 8000 &divide; 5000", "r = (8000 &divide; 5000)<sup>1/6</sup> &minus; 1", "r = 3000 &divide; 6", "r = 1.6 &minus; 1"],
+          answer: 1
+        },
+        {
+          q: "Bacteria double every 3 hours. Starting with 100, how many after 12 hours?",
+          options: ["400", "800", "1 600", "1 200"],
+          answer: 2
+        },
+        {
+          q: "Using the Rule of 70, a population growing at 3.5% per year will double in approximately:",
+          options: ["20 years", "24 years", "35 years", "70 years"],
+          answer: 0
+        },
+        {
+          q: "A population decreases by 2% each year. The common ratio is:",
+          options: ["1.02", "0.98", "0.02", "&minus;0.02"],
+          answer: 1
+        },
+        {
+          q: "P<sub>0</sub> = 6 000, r = 0.04, n = 5. Calculate P<sub>5</sub> (nearest whole number).",
+          options: ["7 200", "7 299", "7 500", "6 240"],
+          answer: 1
+        },
+        {
+          q: "Which situation is best modeled by geometric growth?",
+          options: ["Adding a fixed number of people each year", "Growing by a fixed percentage each year", "Population stays constant", "Linear increase only"],
+          answer: 1
+        },
+        {
+          q: "A town of 9 000 grows at 6% per year. Population after 3 years &approx;",
+          options: ["10 620", "10 719", "11 000", "10 000"],
+          answer: 1
+        },
+        {
+          q: "For infinite geometric series to converge we need |r| &lt; 1. In population growth models we usually have:",
+          options: ["r &gt; 1", "r &gt; 0", "r = 0", "r negative only"],
+          answer: 1
+        },
+        {
+          q: "A population triples in 10 years. The annual growth factor is approximately:",
+          options: ["1.116", "1.3", "3.0", "0.3"],
+          answer: 0
+        },
+        {
+          q: "Continuous growth formula is P<sub>t</sub> = P<sub>0</sub> &times; e<sup>rt</sup>. The value of e is approximately:",
+          options: ["2.718", "3.14", "1.618", "2.5"],
+          answer: 0
+        }
+      ],
+      hard: [
+        {
+          q: "A population of 20 000 grows continuously at 2.8% per year. Approximate population after 8 years? (Use e<sup>0.224</sup> &approx; 1.251)",
+          options: ["24 500", "25 020", "22 400", "26 000"],
+          answer: 1
+        },
+        {
+          q: "Find the exact doubling time for a 4% annual growth rate (use logarithms).",
+          options: ["&approx; 17.3 years", "&approx; 17.5 years", "&approx; 25 years", "&approx; 35 years"],
+          answer: 0
+        },
+        {
+          q: "A city grew from 50 000 to 68 000 in 7 years. The average annual growth rate is closest to:",
+          options: ["4.5%", "4.8%", "5.2%", "3.9%"],
+          answer: 1
+        },
+        {
+          q: "Bacteria start at 500 and increase by 40% every 2 hours. How many after 10 hours?",
+          options: ["&approx; 2 689", "&approx; 3 000", "&approx; 1 960", "&approx; 4 200"],
+          answer: 0
+        },
+        {
+          q: "A population declines at 1.5% per year from 45 000. Value after 12 years &approx;",
+          options: ["&approx; 37 500", "&approx; 37 200", "&approx; 36 800", "&approx; 38 000"],
+          answer: 1
+        },
+        {
+          q: "If a population doubles every 25 years, the annual growth rate is approximately:",
+          options: ["2.8%", "2.9%", "3.0%", "2.77%"],
+          answer: 3
+        },
+        {
+          q: "Which statement is TRUE about geometric population models?",
+          options: ["They assume unlimited resources", "They always converge", "They use common difference", "They are only for bacteria"],
+          answer: 0
+        },
+        {
+          q: "A population is 12 000 now and was 8 000 eight years ago. Growth rate &approx;",
+          options: ["5.2%", "5.0%", "4.8%", "6.0%"],
+          answer: 0
+        },
+        {
+          q: "Using continuous growth, P<sub>0</sub> = 3 000, r = 0.035, t = 15. P<sub>15</sub> &approx; (e<sup>0.525</sup> &approx; 1.690)",
+          options: ["4 800", "5 070", "5 200", "4 500"],
+          answer: 1
+        },
+        {
+          q: "Why do real populations eventually stop following pure geometric growth?",
+          options: ["Because of limiting factors (resources, space, etc.)", "Because r becomes zero", "Because math models fail", "Because populations only decrease"],
+          answer: 0
+        }
+      ]
+    };
+
+    let currentLevel = '';
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let userAnswers = [];
+    let timerInterval;
+    let timeLeft = 0;
+
+    function startQuiz(level) {
+      currentLevel = level;
+      currentQuestions = questions[level];
+      currentIndex = 0;
+      userAnswers = new Array(currentQuestions.length).fill(null);
+
+      const times = { easy: 10 * 60, medium: 18 * 60, hard: 25 * 60 };
+      timeLeft = times[level];
+
+      document.getElementById('levelSection').style.display = 'none';
+      document.getElementById('quizArea').classList.add('active');
+      document.getElementById('resultsArea').classList.remove('active');
+
+      const titles = {
+        easy: 'Population Growth � Easy Level',
+        medium: 'Population Growth � Medium Level',
+        hard: 'Population Growth � Hard Level'
+      };
+      document.getElementById('quizTitle').textContent = titles[level];
+
+      startTimer();
+      showQuestion();
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          submitQuiz();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const m = Math.floor(timeLeft / 60);
+      const s = timeLeft % 60;
+      document.getElementById('timer').textContent = `${m}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function showQuestion() {
+      const q = currentQuestions[currentIndex];
+      document.getElementById('qNumber').textContent = `Question ${currentIndex + 1} of ${currentQuestions.length}`;
+      document.getElementById('qText').innerHTML = q.q;
+
+      const optionsDiv = document.getElementById('options');
+      optionsDiv.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+      q.options.forEach((opt, i) => {
+        const div = document.createElement('div');
+        div.className = 'option' + (userAnswers[currentIndex] === i ? ' selected' : '');
+        div.innerHTML = `<span class="option-letter">${letters[i]}</span> <span>${opt}</span>`;
+        div.onclick = () => selectOption(i);
+        optionsDiv.appendChild(div);
+      });
+
+      document.getElementById('btnPrev').style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
+      const btnNext = document.getElementById('btnNext');
+      if (currentIndex === currentQuestions.length - 1) {
+        btnNext.textContent = 'Submit Quiz';
+        btnNext.className = 'btn-nav btn-submit';
+        btnNext.onclick = submitQuiz;
+      } else {
+        btnNext.textContent = 'Next ?';
+        btnNext.className = 'btn-nav btn-next';
+        btnNext.onclick = nextQuestion;
+      }
+
+      const progress = ((currentIndex + 1) / currentQuestions.length) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+    }
+
+    function selectOption(i) {
+      userAnswers[currentIndex] = i;
+      showQuestion();
+    }
+
+    function nextQuestion() {
+      if (currentIndex < currentQuestions.length - 1) {
+        currentIndex++;
+        showQuestion();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        showQuestion();
+      }
+    }
+
+    function submitQuiz() {
+      clearInterval(timerInterval);
+      document.getElementById('quizArea').classList.remove('active');
+      document.getElementById('resultsArea').classList.add('active');
+
+      let correct = 0;
+      currentQuestions.forEach((q, i) => {
+        if (userAnswers[i] === q.answer) correct++;
+      });
+
+      const total = currentQuestions.length;
+      const percent = Math.round((correct / total) * 100);
+
+      document.getElementById('scorePercent').textContent = percent + '%';
+      document.getElementById('scoreDetails').textContent = `You got ${correct} out of ${total} questions correct.`;
+
+      let message = '';
+      let note = '';
+      if (percent >= 90) {
+        message = 'Outstanding!';
+        note = 'Excellent work! You have a strong grasp of population growth models. Keep practicing to maintain this high level.';
+      } else if (percent >= 70) {
+        message = 'Great job!';
+        note = 'You understand the main concepts well. Review the questions you missed, especially those involving growth rate calculations and doubling time.';
+      } else if (percent >= 50) {
+        message = 'Good effort!';
+        note = 'You have a basic understanding. Focus on the formula P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup> and practice finding growth rates and future populations.';
+      } else {
+        message = 'Keep practicing!';
+        note = 'Review the Population Growth lesson carefully. Pay special attention to the common ratio, the growth formula, and worked examples before trying again.';
+      }
+      document.getElementById('scoreMessage').textContent = message;
+      document.getElementById('improvementNote').innerHTML = `<strong>Learn &amp; Improve:</strong> ${note}`;
+
+      // Review list
+      const reviewList = document.getElementById('reviewList');
+      reviewList.innerHTML = '';
+      currentQuestions.forEach((q, i) => {
+        const isCorrect = userAnswers[i] === q.answer;
+        const userAns = userAnswers[i] !== null ? q.options[userAnswers[i]] : 'Not answered';
+        const correctAns = q.options[q.answer];
+
+        const item = document.createElement('div');
+        item.className = 'review-item';
+        item.innerHTML = `
+          <div class="review-q">Q${i + 1}. ${q.q}</div>
+          <div class="review-answer your-answer">Your answer: ${userAns}</div>
+          <div class="review-answer ${isCorrect ? 'correct' : 'wrong'}">
+            ${isCorrect ? '? Correct' : '? Correct answer: ' + correctAns}
+          </div>
+        `;
+        reviewList.appendChild(item);
+      });
+    }
+  </script>
+</body>
+</html>

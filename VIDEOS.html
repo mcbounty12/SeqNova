@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Videos � SeqNova</title>
+   <link rel="stylesheet" href="NOVA/VIDEOS.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+</head>
+<script>
+  // Map of search keywords → page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle">Lessons <i class="fas fa-chevron-down" style="font-size:0.65rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.html">1. Introduction to Geometric Sequences &amp; Series</a>
+          <a href="LESSON222.html">2. Population Growth</a>
+          <a href="LESSON333.html">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.html">Quizzes</a></li>
+      <li><a href="ABOUTUS.html">About Us</a></li>
+      <li><a href="CONTACTS.html">Contacts</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="CONTACTS.html" class="btn-contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="videos-hero">
+    <div class="math-left">a<sub>n</sub> = a<sub>1</sub> + (n &minus; 1)d</div>
+    <div class="math-right">S<sub>n</sub> = &Sigma;<sub>k=1</sub><sup>n</sup> a<sub>k</sub></div>
+
+    <h1><i class="fas fa-play-circle"></i> Video Lessons</h1>
+    <p>Watch and learn &ndash; videos for each SeqNova lesson</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- ========== VIDEOS ========== -->
+  <section class="videos-section">
+
+    <!-- LESSON 1: INTRODUCTION TO GEOMETRIC SEQUENCES & SERIES -->
+    <!--
+      Video 1: "Geometric Sequences" by The Organic Chemistry Tutor
+               https://www.youtube.com/watch?v=pXo0bG4iAyg
+      Video 2: "Geometric Series and the Sum Formula" by Khan Academy
+               https://www.youtube.com/watch?v=b-7kCymoUpg
+    -->
+    <div class="video-block">
+      <div class="video-header">
+        <div class="video-icon intro"><i class="fas fa-infinity"></i></div>
+        <div>
+          <h2>1. Introduction to Geometric Sequences &amp; Series</h2>
+          <p>Learn the basics of geometric sequences, common ratio and series formulas</p>
+        </div>
+      </div>
+
+      <div class="video-grid">
+        <!-- Geometric Sequences � The Organic Chemistry Tutor -->
+        <div class="video-card">
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/pXo0bG4iAyg?rel=0&modestbranding=1"
+              title="Geometric Sequences � The Organic Chemistry Tutor"
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h4>Geometric Sequences Explained</h4>
+            <p>Clear introduction to geometric sequences and the common ratio</p>
+          </div>
+        </div>
+
+        <!-- Geometric Series Sum Formula � Khan Academy -->
+        <div class="video-card">
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/b-7kCymoUpg?rel=0&modestbranding=1"
+              title="Geometric Series Sum Formula � Khan Academy"
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h4>Geometric Series &amp; Sum Formula</h4>
+            <p>How to find the sum of a geometric series step by step</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="LESSONSSS.HTML" class="lesson-link intro">
+        <i class="fas fa-book-open"></i> Go to Full Lesson
+      </a>
+    </div>
+
+    <!-- LESSON 2: POPULATION GROWTH -->
+    <!--
+      Video 1: "Exponential Growth and Decay" by Khan Academy
+               https://www.youtube.com/watch?v=m5Tf6vgoJtQ
+      Video 2: "Exponential Growth � Population Growth" by The Organic Chemistry Tutor
+               https://www.youtube.com/watch?v=6WMZ7J-dEpk
+    -->
+    <div class="video-block">
+      <div class="video-header">
+        <div class="video-icon pop"><i class="fas fa-users"></i></div>
+        <div>
+          <h2>2. Population Growth</h2>
+          <p>See how geometric sequences model real population growth</p>
+        </div>
+      </div>
+
+      <div class="video-grid">
+        <!-- Exponential Growth and Decay � Khan Academy -->
+        <div class="video-card">
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/m5Tf6vgoJtQ?rel=0&modestbranding=1"
+              title="Exponential Growth and Decay � Khan Academy"
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h4>Exponential &amp; Population Growth</h4>
+            <p>Understanding growth models using sequences</p>
+          </div>
+        </div>
+
+        <!-- Population Growth Models � The Organic Chemistry Tutor -->
+        <div class="video-card">
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/6WMZ7J-dEpk?rel=0&modestbranding=1"
+              title="Population Growth Models � The Organic Chemistry Tutor"
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h4>Population Growth Models</h4>
+            <p>Real-world applications of geometric growth</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="LESSON222.html" class="lesson-link pop">
+        <i class="fas fa-book-open"></i> Go to Full Lesson
+      </a>
+    </div>
+
+    <!-- LESSON 3: DEPRECIATION -->
+    <!--
+      Video 1: "Reducing Balance Depreciation" by maths520
+               https://www.youtube.com/watch?v=aQa3PgHYS9Q
+      Video 2: "Depreciation � Reducing Balance Method" by The Organic Chemistry Tutor
+               https://www.youtube.com/watch?v=jExpshn9HaA
+    -->
+    <div class="video-block">
+      <div class="video-header">
+        <div class="video-icon dep"><i class="fas fa-car"></i></div>
+        <div>
+          <h2>3. Depreciation</h2>
+          <p>Learn reducing-balance depreciation as a geometric sequence</p>
+        </div>
+      </div>
+
+      <div class="video-grid">
+        <!-- Reducing Balance Depreciation � maths520 -->
+        <div class="video-card">
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/aQa3PgHYS9Q?rel=0&modestbranding=1"
+              title="Reducing Balance Depreciation � maths520"
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h4>Reducing Balance Depreciation</h4>
+            <p>How assets lose value using geometric decay</p>
+          </div>
+        </div>
+
+        <!-- Depreciation Explained � The Organic Chemistry Tutor -->
+        <div class="video-card">
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/jExpshn9HaA?rel=0&modestbranding=1"
+              title="Depreciation Explained � The Organic Chemistry Tutor"
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h4>Depreciation Explained Simply</h4>
+            <p>Clear examples of the reducing-balance method</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="LESSON333.HTML" class="lesson-link dep">
+        <i class="fas fa-book-open"></i> Go to Full Lesson
+      </a>
+    </div>
+
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h3>SeqNova</h3>
+          <p>Exploring the Applications of Sequences and Series</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="lesson-intro.html">Lessons</a>
+        <a href="quizzes.html">Quizzes</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 SeqNova. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

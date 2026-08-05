@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SeqNova Challenge – Math Game</title>
+   <link rel="stylesheet" href="NOVA/GAME.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --purple: #7c3aed;
+      --pink: #ec4899;
+      --blue: #3b82f6;
+      --teal: #14b8a6;
+      --orange: #f97316;
+      --yellow: #eab308;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0f0a2e 0%, #1a0a3e 40%, #0c1a3a 100%);
+      min-height: 100vh;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ========== NAVBAR ========== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      height: 64px;
+      background: rgba(10, 5, 30, 0.9);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .logo-icon {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .logo-text h1 { font-size: 1.25rem; font-weight: 700; }
+    .logo-text span { font-size: 0.55rem; color: #a78bfa; display: block; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #c4b5fd;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .dropdown { position: relative; }
+    .dropdown-toggle {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #c4b5fd;
+      font-size: 0.9rem;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 140%;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: #1e1035;
+      border: 1px solid rgba(167,139,250,0.2);
+      border-radius: 12px;
+      min-width: 280px;
+      padding: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      z-index: 200;
+    }
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 14px;
+      color: #c4b5fd;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(124,58,237,0.3);
+      color: #fff;
+    }
+
+    /* ========== GAME CONTAINER ========== */
+    .game-wrap {
+      max-width: 720px;
+      margin: 90px auto 40px;
+      padding: 0 16px;
+    }
+
+    /* START SCREEN */
+    .start-screen {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .game-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      box-shadow: 0 0 25px rgba(124,58,237,0.5);
+    }
+    .start-screen h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #a78bfa, #f472b6, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+    .start-screen p {
+      color: #c4b5fd;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    .game-info {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .info-pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 14px;
+      padding: 14px 22px;
+      min-width: 120px;
+    }
+    .info-pill i {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .info-pill .label {
+      font-size: 0.8rem;
+      color: #a78bfa;
+    }
+    .info-pill .value {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .btn-play {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #7c3aed, #ec4899, #f97316);
+      color: #fff;
+      padding: 18px 48px;
+      border-radius: 60px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 40px rgba(236,72,153,0.45), 0 10px 30px rgba(124,58,237,0.4);
+      transition: all 0.3s;
+      animation: pulse 2s infinite;
+    }
+    .btn-play:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 55px rgba(236,72,153,0.6), 0 14px 40px rgba(124,58,237,0.5);
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 40px rgba(236,72,153,0.45), 0 10px 30px rgba(124,58,237,0.4); }
+      50% { box-shadow: 0 0 55px rgba(236,72,153,0.65), 0 14px 40px rgba(124,58,237,0.55); }
+    }
+
+    /* GAME HUD */
+    .hud {
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(167,139,250,0.2);
+      border-radius: 16px;
+      padding: 14px 20px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .hud.active { display: flex; }
+
+    .hud-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .hud-item i { font-size: 1.15rem; }
+    .score-val { color: #fbbf24; }
+    .streak-val { color: #f472b6; }
+    .lives-val { color: #f87171; }
+    .q-val { color: #38bdf8; }
+
+    /* QUESTION CARD */
+    .game-card {
+      display: none;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 24px;
+      padding: 32px 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .game-card.active { display: block; }
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #7c3aed, #ec4899, #f97316, #eab308);
+    }
+
+    .topic-tag {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .topic-tag.pop { background: rgba(20,184,166,0.25); color: #5eead4; }
+    .topic-tag.dep { background: rgba(249,115,22,0.25); color: #fdba74; }
+
+    .q-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 28px;
+      color: #f5f3ff;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .option {
+      background: rgba(255,255,255,0.07);
+      border: 2px solid rgba(167,139,250,0.3);
+      border-radius: 14px;
+      padding: 16px 18px;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1.05rem;
+    }
+    .option:hover {
+      background: rgba(124,58,237,0.2);
+      border-color: #a78bfa;
+      transform: translateX(6px);
+    }
+    .option.correct {
+      background: rgba(16,185,129,0.25);
+      border-color: #34d399;
+      box-shadow: 0 0 20px rgba(16,185,129,0.3);
+    }
+    .option.wrong {
+      background: rgba(239,68,68,0.2);
+      border-color: #f87171;
+    }
+    .option.disabled { pointer-events: none; }
+
+    .opt-letter {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    .feedback {
+      margin-top: 20px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      display: none;
+    }
+    .feedback.show { display: block; }
+    .feedback.good {
+      background: rgba(16,185,129,0.2);
+      color: #6ee7b7;
+      border: 1px solid rgba(16,185,129,0.4);
+    }
+    .feedback.bad {
+      background: rgba(239,68,68,0.15);
+      color: #fca5a5;
+      border: 1px solid rgba(239,68,68,0.35);
+    }
+
+    .btn-next-q {
+      display: none;
+      margin: 24px auto 0;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(124,58,237,0.4);
+    }
+    .btn-next-q.show { display: block; }
+    .btn-next-q:hover { transform: translateY(-2px); }
+
+    /* RESULTS */
+    .results-screen {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .results-screen.active { display: block; }
+
+    .trophy {
+      font-size: 5rem;
+      margin-bottom: 16px;
+      animation: bounce 1s ease;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+
+    .results-screen h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #a78bfa, #f472b6, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .final-score {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #fbbf24;
+      text-shadow: 0 0 30px rgba(251,191,36,0.5);
+      margin: 12px 0;
+    }
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin: 24px 0 30px;
+    }
+    .stat-box {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 14px;
+      padding: 16px 24px;
+      min-width: 110px;
+    }
+    .stat-box .num {
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+    .stat-box .lbl {
+      font-size: 0.85rem;
+      color: #a78bfa;
+    }
+
+    .message-box {
+      background: rgba(124,58,237,0.2);
+      border: 1px solid rgba(167,139,250,0.35);
+      border-radius: 14px;
+      padding: 16px 22px;
+      max-width: 420px;
+      margin: 0 auto 28px;
+      color: #e9d5ff;
+      font-size: 1rem;
+    }
+
+    .btn-again {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      color: #fff;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(124,58,237,0.45);
+      transition: all 0.3s;
+    }
+    .btn-again:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #7c6a9e;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      .start-screen h1 { font-size: 2.1rem; }
+      .nav-links { display: none; }
+      .game-card { padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring Sequences &amp; Series</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle">Lessons <i class="fas fa-chevron-down" style="font-size:0.6rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.html">1. Introduction to Geometric Sequences</a>
+          <a href="LESSON222.html">2. Population Growth</a>
+          <a href="LESSON333.html">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.html">Quizzes</a></li>
+      <li><a href="ABOUTUS.html">About</a></li>
+      <li><a href="CONTACTS.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="game-wrap">
+
+    <!-- START SCREEN -->
+    <div class="start-screen" id="startScreen">
+      <div class="game-badge"><i class="fas fa-gamepad"></i> MATH CHALLENGE</div>
+      <h1>SeqNova<br>Challenge</h1>
+      <p>Test your knowledge of Population Growth &amp; Depreciation in this fun, fast-paced quiz game!</p>
+
+      <div class="game-info">
+        <div class="info-pill">
+          <i class="fas fa-question-circle" style="color:#38bdf8"></i>
+          <div class="label">Questions</div>
+          <div class="value">12</div>
+        </div>
+        <div class="info-pill">
+          <i class="fas fa-heart" style="color:#f87171"></i>
+          <div class="label">Lives</div>
+          <div class="value">3</div>
+        </div>
+        <div class="info-pill">
+          <i class="fas fa-bolt" style="color:#fbbf24"></i>
+          <div class="label">Streak Bonus</div>
+          <div class="value">Yes!</div>
+        </div>
+        <div class="info-pill">
+          <i class="fas fa-star" style="color:#f472b6"></i>
+          <div class="label">Max Score</div>
+          <div class="value">1200</div>
+        </div>
+      </div>
+
+      <button class="btn-play" onClick="startGame()">
+        <i class="fas fa-play"></i> PLAY NOW
+      </button>
+    </div>
+
+    <!-- HUD -->
+    <div class="hud" id="hud">
+      <div class="hud-item">
+        <i class="fas fa-star" style="color:#fbbf24"></i>
+        Score: <span class="score-val" id="scoreVal">0</span>
+      </div>
+      <div class="hud-item">
+        <i class="fas fa-fire" style="color:#f472b6"></i>
+        Streak: <span class="streak-val" id="streakVal">0</span>
+      </div>
+      <div class="hud-item">
+        <i class="fas fa-heart" style="color:#f87171"></i>
+        Lives: <span class="lives-val" id="livesVal">3</span>
+      </div>
+      <div class="hud-item">
+        <i class="fas fa-list-ol" style="color:#38bdf8"></i>
+        <span class="q-val" id="qVal">1 / 12</span>
+      </div>
+    </div>
+
+    <!-- QUESTION CARD -->
+    <div class="game-card" id="gameCard">
+      <div class="topic-tag" id="topicTag">Population Growth</div>
+      <div class="q-text" id="qText"></div>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback"></div>
+      <button class="btn-next-q" id="btnNext" onClick="nextQuestion()">Next Question →</button>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="results-screen" id="resultsScreen">
+      <div class="trophy" id="trophy">🏆</div>
+      <h2 id="resultTitle">Awesome!</h2>
+      <div class="final-score" id="finalScore">0</div>
+      <p style="color:#c4b5fd; margin-bottom:8px;">points</p>
+
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="num" id="statCorrect" style="color:#34d399">0</div>
+          <div class="lbl">Correct</div>
+        </div>
+        <div class="stat-box">
+          <div class="num" id="statWrong" style="color:#f87171">0</div>
+          <div class="lbl">Wrong</div>
+        </div>
+        <div class="stat-box">
+          <div class="num" id="statStreak" style="color:#f472b6">0</div>
+          <div class="lbl">Best Streak</div>
+        </div>
+      </div>
+
+      <div class="message-box" id="resultMsg"></div>
+
+      <button class="btn-again" onClick="location.reload()">
+        <i class="fas fa-redo"></i> Play Again
+      </button>
+    </div>
+
+  </div>
+
+  <footer>© 2026 SeqNova · Challenge Mode</footer>
+
+  <script>
+    const questions = [
+      // Population Growth
+      {
+        topic: "pop",
+        q: "A town of 5 000 people grows at 4% per year. Population after 1 year?",
+        options: ["5 200", "5 400", "5 000", "5 100"],
+        answer: 0
+      },
+      {
+        topic: "pop",
+        q: "In P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup>, what is r?",
+        options: ["Initial population", "Growth rate as a decimal", "Number of years", "Final population"],
+        answer: 1
+      },
+      {
+        topic: "pop",
+        q: "Bacteria double every hour. Start with 100. How many after 3 hours?",
+        options: ["300", "400", "800", "600"],
+        answer: 2
+      },
+      {
+        topic: "pop",
+        q: "Using Rule of 70, a 2% growth rate doubles in about:",
+        options: ["35 years", "70 years", "20 years", "14 years"],
+        answer: 0
+      },
+      {
+        topic: "pop",
+        q: "A population grows from 8 000 to 10 000 in 5 years. Approximate r?",
+        options: ["4.5%", "5%", "4.56%", "6%"],
+        answer: 2
+      },
+      {
+        topic: "pop",
+        q: "If the common ratio is 1.03, the annual growth rate is:",
+        options: ["3%", "1.03%", "30%", "0.3%"],
+        answer: 0
+      },
+      // Depreciation
+      {
+        topic: "dep",
+        q: "A car costs $20 000 and depreciates at 10% per year. Value after 1 year?",
+        options: ["$18 000", "$19 000", "$17 000", "$16 000"],
+        answer: 0
+      },
+      {
+        topic: "dep",
+        q: "In V<sub>n</sub> = V<sub>0</sub> &times; (1 &minus; r)<sup>n</sup>, what does r stand for?",
+        options: ["Original value", "Depreciation rate", "Number of years", "Scrap value"],
+        answer: 1
+      },
+      {
+        topic: "dep",
+        q: "An asset depreciates at 20% per year. The common ratio is:",
+        options: ["1.20", "0.20", "0.80", "20"],
+        answer: 2
+      },
+      {
+        topic: "dep",
+        q: "Machine costs $12 000, depreciates 15% per year. Value after 2 years?",
+        options: ["$8 670", "$10 200", "$8 700", "$9 000"],
+        answer: 0
+      },
+      {
+        topic: "dep",
+        q: "Which method produces a geometric sequence?",
+        options: ["Straight-line", "Reducing-balance", "Both", "Neither"],
+        answer: 1
+      },
+      {
+        topic: "dep",
+        q: "A laptop costs $1 500 and loses 25% of its value each year. Value after 1 year?",
+        options: ["$1 125", "$1 250", "$1 000", "$1 200"],
+        answer: 0
+      }
+    ];
+
+    let score = 0;
+    let streak = 0;
+    let bestStreak = 0;
+    let lives = 3;
+    let current = 0;
+    let correctCount = 0;
+    let wrongCount = 0;
+    let answered = false;
+
+    function startGame() {
+      document.getElementById('startScreen').style.display = 'none';
+      document.getElementById('hud').classList.add('active');
+      document.getElementById('gameCard').classList.add('active');
+      current = 0;
+      score = 0;
+      streak = 0;
+      bestStreak = 0;
+      lives = 3;
+      correctCount = 0;
+      wrongCount = 0;
+      updateHUD();
+      showQuestion();
+    }
+
+    function updateHUD() {
+      document.getElementById('scoreVal').textContent = score;
+      document.getElementById('streakVal').textContent = streak;
+      document.getElementById('livesVal').textContent = lives;
+      document.getElementById('qVal').textContent = (current + 1) + ' / ' + questions.length;
+    }
+
+    function showQuestion() {
+      answered = false;
+      const q = questions[current];
+      const tag = document.getElementById('topicTag');
+      tag.textContent = q.topic === 'pop' ? 'Population Growth' : 'Depreciation';
+      tag.className = 'topic-tag ' + q.topic;
+
+      document.getElementById('qText').innerHTML = q.q;
+      document.getElementById('feedback').className = 'feedback';
+      document.getElementById('feedback').style.display = 'none';
+      document.getElementById('btnNext').classList.remove('show');
+
+      const optionsDiv = document.getElementById('options');
+      optionsDiv.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+      q.options.forEach((opt, i) => {
+        const div = document.createElement('div');
+        div.className = 'option';
+        div.innerHTML = `<span class="opt-letter">${letters[i]}</span> <span>${opt}</span>`;
+        div.onclick = () => selectAnswer(i);
+        optionsDiv.appendChild(div);
+      });
+    }
+
+    function selectAnswer(i) {
+      if (answered) return;
+      answered = true;
+
+      const q = questions[current];
+      const options = document.querySelectorAll('.option');
+      options.forEach(o => o.classList.add('disabled'));
+
+      const feedback = document.getElementById('feedback');
+      feedback.style.display = 'block';
+
+      if (i === q.answer) {
+        options[i].classList.add('correct');
+        streak++;
+        if (streak > bestStreak) bestStreak = streak;
+        const points = 100 + (streak > 1 ? (streak - 1) * 20 : 0);
+        score += points;
+        correctCount++;
+        feedback.className = 'feedback show good';
+        feedback.innerHTML = `<i class="fas fa-check-circle"></i> Correct! +${points} points ${streak > 1 ? '🔥 Streak ×' + streak : ''}`;
+      } else {
+        options[i].classList.add('wrong');
+        options[q.answer].classList.add('correct');
+        streak = 0;
+        lives--;
+        wrongCount++;
+        feedback.className = 'feedback show bad';
+        feedback.innerHTML = `<i class="fas fa-times-circle"></i> Wrong! Correct answer: ${q.options[q.answer]}`;
+      }
+
+      updateHUD();
+      document.getElementById('btnNext').classList.add('show');
+
+      if (lives <= 0) {
+        document.getElementById('btnNext').textContent = 'See Results →';
+      }
+    }
+
+    function nextQuestion() {
+      if (lives <= 0 || current >= questions.length - 1) {
+        endGame();
+        return;
+      }
+      current++;
+      updateHUD();
+      showQuestion();
+    }
+
+    function endGame() {
+      document.getElementById('gameCard').classList.remove('active');
+      document.getElementById('hud').classList.remove('active');
+      document.getElementById('resultsScreen').classList.add('active');
+
+      document.getElementById('finalScore').textContent = score;
+      document.getElementById('statCorrect').textContent = correctCount;
+      document.getElementById('statWrong').textContent = wrongCount;
+      document.getElementById('statStreak').textContent = bestStreak;
+
+      let title = '', msg = '', trophy = '🏆';
+      if (score >= 1000) {
+        title = 'Legendary!';
+        msg = 'Incredible performance! You are a true SeqNova master of sequences and series.';
+        trophy = '👑';
+      } else if (score >= 700) {
+        title = 'Awesome!';
+        msg = 'Great work! You clearly understand population growth and depreciation well.';
+        trophy = '🏆';
+      } else if (score >= 400) {
+        title = 'Good Effort!';
+        msg = 'Nice try! Review the lessons on geometric growth and reducing-balance depreciation to improve further.';
+        trophy = '⭐';
+      } else {
+        title = 'Keep Going!';
+        msg = 'Practice makes perfect. Go back to the lessons, review the formulas, and try the challenge again!';
+        trophy = '💪';
+      }
+      document.getElementById('resultTitle').textContent = title;
+      document.getElementById('resultMsg').textContent = msg;
+      document.getElementById('trophy').textContent = trophy;
+    }
+  </script>
+</body>
+</html>

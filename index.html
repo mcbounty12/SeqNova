@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SeqNova – Exploring the Applications of Sequences and Series</title>
+  <link rel="stylesheet" href="NOVA/HOMEPAGE.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+</head>
+<script>
+  // Map of search keywords → page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.HTML" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+
+    <div class="nav-center">
+      <!-- View Course Detail button -->
+      <button class="btn-course-detail" type="button" onclick="openCourseDetail()">
+        <i class="fas fa-info-circle"></i> View Course Detail
+      </button>
+
+      <!-- Navigation Menu with dropdown -->
+      <div class="nav-menu-wrap" id="navMenu">
+        <button class="nav-menu-btn" type="button" onclick="this.parentElement.classList.toggle('open')">
+          <i class="fas fa-bars"></i> Menu
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="nav-dropdown">
+          <div class="drop-parent" onmouseenter="this.classList.add('open')" onmouseleave="this.classList.remove('open')">
+            <div class="drop-label">
+              <span><i class="fas fa-book-open"></i> Lessons</span>
+              <i class="fas fa-chevron-down sub-arrow"></i>
+            </div>
+            <div class="sub-menu">
+              <a href="LESSONSSS.html">1. Introduction on Application to Geometric Sequence and Series</a>
+              <a href="LESSON222.html">2. Population Growth</a>
+              <a href="LESSON333.html">3. Depreciation</a>
+            </div>
+          </div>
+          <a href="QUIZPAGE.html"><i class="fas fa-question-circle"></i> Quizzes</a>
+          <a href="PRACTICEPAGE.html"><i class="fas fa-pencil-alt"></i> Practice Activity</a>
+          <a href="INTERACTIVE.html"><i class="fas fa-laptop-code"></i> Interactive Learning</a>
+          <a href="ABOUTUS.html"><i class="fas fa-users"></i> About Us</a>
+          <a href="CONTACTS.html"><i class="fas fa-envelope"></i> Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search...">
+      </div>
+      <a href="CONTACTS.html" class="btn-contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ========== COURSE DETAIL MODAL ========== -->
+  <div class="modal-overlay" id="courseModal" onclick="if(event.target===this) closeCourseDetail()">
+    <div class="modal-box">
+      <button class="modal-close" type="button" onclick="closeCourseDetail()" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <h2><i class="fas fa-graduation-cap"></i> Course Details</h2>
+      <p class="modal-sub">Everything you need to know about this learning journey on SeqNova.</p>
+
+      <div class="detail-block">
+        <div class="detail-label"><i class="fas fa-bookmark"></i> Course Title</div>
+        <h3>Applications of Sequences and Series</h3>
+        <p>
+          A focused course that bridges pure mathematics and everyday life. 
+          Students explore how ordered lists of numbers (sequences) and their sums (series) 
+          describe real patterns of growth and decline — from populations expanding year by year 
+          to the value of assets falling over time.
+        </p>
+      </div>
+
+      <div class="detail-block">
+        <div class="detail-label"><i class="fas fa-square-root-alt"></i> Mathematics Topic</div>
+        <h3>Geometric Sequences &amp; Series</h3>
+        <p>
+          The heart of the course is the geometric sequence — a list where each term is found 
+          by multiplying the previous one by a constant ratio. Learners master the nth-term formula, 
+          finite and infinite sums, and then apply these tools to model percentage growth and 
+          reducing-balance depreciation.
+        </p>
+      </div>
+
+      <div class="detail-block">
+        <div class="detail-label"><i class="fas fa-user-graduate"></i> Class Level</div>
+        <h3>SHS 2</h3>
+        <p>
+          Designed for Senior High School Year 2 learners. The content builds on basic algebra 
+          and arithmetic sequences, then advances into geometric models with clear, step-by-step 
+          examples suitable for classroom and independent study.
+        </p>
+      </div>
+
+      <div class="detail-block objectives">
+        <div class="detail-label"><i class="fas fa-bullseye"></i> Lesson Objectives</div>
+        <h3>By the end of this course, students will be able to:</h3>
+        <ul>
+          <li>Define and identify geometric sequences and series, and write their general terms.</li>
+          <li>Apply the formulas for the nth term and the sum of the first n terms of a geometric sequence.</li>
+          <li>Model population growth using geometric sequences and interpret the common ratio as a growth factor.</li>
+          <li>Model depreciation (reducing-balance method) and calculate book value after a given number of years.</li>
+          <li>Solve real-life problems involving growth and decay, and explain their answers clearly.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="home">
+    <div class="math-float f1">a<sub>n</sub> = a<sub>1</sub> + (n − 1)d</div>
+    <div class="math-float f2">S<sub>n</sub> = Σ<sub>k=1</sub><sup>n</sup> a<sub>k</sub></div>
+    <div class="math-float f3">S<sub>∞</sub> = a/(1−r)</div>
+
+    <div class="hero-content">
+      <h2>Discover the Power<br>of <span class="highlight">Sequences and Series</span></h2>
+      <p class="subtitle">Connecting Mathematics to the Real World</p>
+      <p>Explore how sequences and series shape the world around us — from population growth to depreciation and beyond.</p>
+      <div class="btn-group">
+        <a href="LESSON.html" class="btn-start">
+          <i class="fas fa-rocket"></i> Start Exploring
+        </a>
+        <a href="VIDEOS.HTML" class="btn-videos">
+          <i class="fas fa-play-circle"></i> Videos
+        </a>
+        <a href="GAME.HTML" class="btn-games">
+          <i class="fas fa-gamepad"></i> Games
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="book-glow"></div>
+      <div class="bars">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <div class="trend">
+        <svg viewBox="0 0 280 160" fill="none">
+          <path d="M15 145 Q 70 125 110 90 T 190 35 T 265 10"
+                stroke="url(#lineGrad)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M250 16 L265 10 L258 28" stroke="#a78bfa" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#3b82f6"/>
+              <stop offset="100%" stop-color="#c4b5fd"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="book">
+        <div class="book-left"></div>
+        <div class="book-right"></div>
+        <div class="book-spine"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURES ========== -->
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+      <h3>Learn</h3>
+      <p>Understand sequences and series from the basics.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+      <h3>Explore</h3>
+      <p>See real-life applications in growth and decay.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-calculator"></i></div>
+      <h3>Calculate</h3>
+      <p>Use our tools for practical computations.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
+      <h3>Apply</h3>
+      <p>Turn mathematical concepts into real-world solutions.</p>
+    </div>
+  </section>
+
+  <!-- ========== APPLICATIONS ========== -->
+  <section class="applications" id="applications">
+    <h2 class="section-title">Explore Applications</h2>
+    <p class="section-subtitle">See how sequences and series make a difference in the real world.</p>
+    <div class="app-grid">
+      <div class="app-card">
+        <div class="app-visual pop-visual">
+          <i class="fas fa-users" style="font-size:2.4rem;color:#c4b5fd;"></i>
+        </div>
+        <div>
+          <h3>Population Growth</h3>
+          <p>Model and predict how populations increase over time using sequences and series.</p>
+          <a href="POPULATION.html" class="btn-explore">Explore →</a>
+        </div>
+      </div>
+      <div class="app-card">
+        <div class="app-visual dep-visual">
+          <i class="fas fa-car" style="font-size:2.4rem;color:#7dd3fc;"></i>
+        </div>
+        <div>
+          <h3>Depreciation</h3>
+          <p>Understand how values decrease over time using sequences and series.</p>
+          <a href="DEPRECIATION.html" class="btn-explore">Explore →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h3>SeqNova</h3>
+          <p>Exploring the Applications of Sequences and Series</p>
+        </div>
+      </div>
+      <div class="footer-tagline">
+        <strong>Mathematics · Growth · Change</strong><br>
+        A brighter understanding for a better future.
+      </div>
+      <div class="social-links">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 SeqNova. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function openCourseDetail() {
+      document.getElementById('courseModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCourseDetail() {
+      document.getElementById('courseModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeCourseDetail();
+    });
+    document.addEventListener('click', function(e) {
+      const menu = document.getElementById('navMenu');
+      if (menu && !menu.contains(e.target)) menu.classList.remove('open');
+    });
+  </script>
+</body>
+</html>

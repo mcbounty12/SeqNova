@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us – SeqNova</title>
+   <link rel="stylesheet" href="NOVA/CONTACTS.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+</head>
+<script>
+  // Map of search keywords → page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle">Lessons <i class="fas fa-chevron-down" style="font-size:0.65rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.html">1. Introduction on Application to Geometric Sequence and Series</a>
+          <a href="LESSON222.html">2. Population Growth</a>
+          <a href="LESSON333.html">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.html">Quizzes</a></li>
+      <li><a href="ABOUTUS.html">About Us</a></li>
+      <li><a href="CONTACTS.html" class="active">Contacts</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search...">
+      </div>
+      <a href="CONTACTS.HTML" class="btn-contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ========== CONTACT HERO ========== -->
+  <section class="contact-hero" id="contact">
+    <div class="math-left">a<sub>n</sub> = a<sub>1</sub> + (n − 1)d</div>
+    <div class="math-right">S<sub>n</sub> = Σ<sub>k=1</sub><sup>n</sup> a<sub>k</sub></div>
+
+    <div class="hero-chart">
+      <svg viewBox="0 0 220 140" fill="none">
+        <rect x="20" y="90" width="22" height="40" rx="4" fill="#4f46e5" opacity="0.7"/>
+        <rect x="50" y="70" width="22" height="60" rx="4" fill="#6366f1" opacity="0.75"/>
+        <rect x="80" y="55" width="22" height="75" rx="4" fill="#818cf8" opacity="0.8"/>
+        <rect x="110" y="40" width="22" height="90" rx="4" fill="#a5b4fc" opacity="0.85"/>
+        <rect x="140" y="25" width="22" height="105" rx="4" fill="#c4b5fd" opacity="0.9"/>
+        <path d="M30 100 Q 70 75 110 50 T 180 15" stroke="#a78bfa" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M165 22 L180 15 L172 32" stroke="#c4b5fd" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <h1>Contact Us</h1>
+    <p>We'd love to hear from you!</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- ========== CONTACT CARDS ========== -->
+  <section class="contact-main">
+
+    <!-- Left: Get in Touch -->
+    <div class="card get-in-touch">
+      <h2>
+        <span class="icon-circle"><i class="fas fa-envelope"></i></span>
+        Get in Touch
+      </h2>
+      <p>Have questions, suggestions or feedback?<br>We'd love to connect with you!</p>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+        <div>
+          <h4>Email Us</h4>
+          <p>support@seqnova.com</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <h4>Our Location</h4>
+          <p>Winneba, Central Region, Ghana</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fas fa-globe"></i></div>
+        <div>
+          <h4>Follow Us</h4>
+          <div class="social-row">
+            <a href="https://facebook.com" class="fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" class="tw" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" class="ig" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" class="li" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Message Form -->
+    <div class="card message-card">
+      <h2>Send Us a Message</h2>
+      <p>We'll get back to you as soon as possible.</p>
+
+      <form onSubmit="event.preventDefault(); alert('Thank you! Your message has been sent successfully.'); this.reset();">
+        <div class="form-row">
+          <div class="form-group">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Your Email" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <i class="fas fa-comment"></i>
+          <input type="text" placeholder="Subject" required>
+        </div>
+
+        <div class="form-group textarea">
+          <i class="fas fa-pen"></i>
+          <textarea placeholder="Your Message..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-send">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+    </div>
+
+  </section>
+
+  <!-- ========== MAP OF WINNEBA ========== -->
+  <section class="map-section">
+    <div class="map-card">
+      <div class="map-header">
+        <div class="map-header-left">
+          <div class="map-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <h3>Our Location – Winneba</h3>
+            <p>Central Region, Ghana</p>
+          </div>
+        </div>
+        <span class="map-badge"><i class="fas fa-map"></i> Live Map</span>
+      </div>
+
+      <div class="map-container">
+        <!-- OpenStreetMap embed of Winneba, Ghana -->
+        <iframe 
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-0.6500%2C5.3200%2C-0.5800%2C5.3800&amp;layer=mapnik&amp;marker=5.3510%2C-0.6230"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div class="map-footer">
+        <div class="map-footer-info">
+          <i class="fas fa-map-pin"></i>
+          <span>Winneba, Central Region, Ghana</span>
+        </div>
+        <a href="https://www.google.com/maps/place/Winneba" target="_blank" class="map-directions">
+          <i class="fas fa-directions"></i> Get Directions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h3>SeqNova</h3>
+          <p>Exploring the Applications of Sequences and Series</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="ABOUTUS.html">About</a>
+        <a href="LESSON.html">Lessons</a>
+        <a href="QUIZPAGE.html">Quizzes</a>
+        <a href="CONTACTS.html">Contact Us</a>
+      </div>
+
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 SeqNova. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

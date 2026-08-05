@@ -1,0 +1,284 @@
+This is a complete HTML page for the "Depreciation" lesson on SeqNova. It's designed as an educational resource that explains how values decrease over time using sequences and series, keeping the site's modern, gradient-based interface.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Depreciation � SeqNova</title>
+  <link rel="stylesheet" href="NOVA/DEPRECIATION.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+ 
+</head>
+<script>
+  // Map of search keywords → page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle">Lessons <i class="fas fa-chevron-down" style="font-size:0.65rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.html">1. Introduction to Geometric Sequences &amp; Series</a>
+          <a href="LESSON222.html">2. Population Growth</a>
+          <a href="LESSON333.html">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.html">Quizzes</a></li>
+      <li><a href="ABOUTUS.html">About Us</a></li>
+      <li><a href="contact.html">Contacts</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="CONTACTS.html" class="btn-contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="depreciation-hero">
+    <div class="math-left">V<sub>n</sub> = V<sub>0</sub> &middot; (1 &minus; r)<sup>n</sup></div>
+    <div class="math-right">S<sub>n</sub> = &Sigma; V<sub>k</sub></div>
+
+    <h1><i class="fas fa-chart-line"></i> Depreciation</h1>
+    <p>Understanding how values decrease over time using sequences and series</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- ========== LESSON CONTENT ========== -->
+  <div class="lesson-container">
+
+    <!-- MAIN LESSON CARD -->
+    <div class="lesson-card">
+      <h2><i class="fas fa-calculator"></i> Reducing Balance Depreciation</h2>
+      <div class="sub">
+        <i class="fas fa-lightbulb" style="color:#ea580c; margin-right:8px;"></i>
+        A geometric sequence approach to asset value decay
+      </div>
+
+      <p>
+        <strong>Depreciation</strong> is the decrease in the value of an asset over time. 
+        The <strong>reducing balance method</strong> (also called declining balance) applies a 
+        fixed percentage rate to the <em>current</em> value each period this creates a 
+        <strong>geometric sequence</strong>.
+      </p>
+
+      <div class="formula-box">
+        V<sub>n</sub> = V<sub>0</sub> &middot; (1 &minus; r)<sup>n</sup>
+        <br />
+        <span style="font-size:1rem; color:#c4b5fd;">
+          where V<sub>0</sub> = initial value, r = depreciation rate, n = number of periods
+        </span>
+      </div>
+
+      <h3><i class="fas fa-stream"></i> The Geometric Sequence</h3>
+      <p>
+        Each year, the value is multiplied by the same factor <strong>(1 - r)</strong>. 
+        This forms a geometric sequence with first term V0 and common ratio (1 - r).
+      </p>
+
+      <div class="highlight-box">
+        <strong>Example:</strong> A car bought for $20,000 depreciates at 15% per year. 
+        The sequence of values is: <br />
+        $20,000 ; $17,000 ; $14,450 ; $12,282.50 ;  (each term is 85% of the previous).
+      </div>
+
+      <h3><i class="fas fa-table"></i> Depreciation Schedule</h3>
+      <div class="table-wrap">
+        <table class="depreciation-table">
+          <thead>
+            <tr>
+              <th>Year (n)</th>
+              <th>Value (V<sub>n</sub>)</th>
+              <th>Depreciation (this year)</th>
+              <th>Accumulated Depreciation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td>$20,000.00</td><td>$0.00</td><td>$0.00</td></tr>
+            <tr><td>1</td><td>$17,000.00</td><td>$3,000.00</td><td>$3,000.00</td></tr>
+            <tr><td>2</td><td>$14,450.00</td><td>$2,550.00</td><td>$5,550.00</td></tr>
+            <tr><td>3</td><td>$12,282.50</td><td>$2,167.50</td><td>$7,717.50</td></tr>
+            <tr><td>4</td><td>$10,440.13</td><td>$1,842.38</td><td>$9,559.88</td></tr>
+            <tr><td>5</td><td>$8,874.11</td><td>$1,566.02</td><td>$11,125.89</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3><i class="fas fa-sigma"></i> Sum of Depreciation (Series)</h3>
+      <p>
+        The <strong>total depreciation</strong> over n years is the sum of the geometric series 
+        of yearly depreciation amounts. The depreciation in year k is:
+      </p>
+      <div style="background:#f1f0ff; padding:12px 20px; border-radius:12px; font-family:'Times New Roman',serif; font-size:1.1rem; text-align:center; margin:12px 0;">
+        D<sub>k</sub> = V<sub>0</sub> &middot; r &middot; (1 &minus; r)<sup>k-1</sup>
+      </div>
+      <p>
+        The sum after n years is a <strong>finite geometric series</strong> with first term V0 r and ratio (1-r):
+      </p>
+      <div style="background:#0f1435; color:#e2d9ff; padding:16px 24px; border-radius:16px; text-align:center; font-family:'Times New Roman',serif; font-size:1.2rem; margin:16px 0;">
+        Total Depreciation = V<sub>0</sub> &middot; [ 1 &minus; (1 &minus; r)<sup>n</sup> ]
+      </div>
+
+      <div class="example-grid">
+        <div class="example-card">
+          <h4><i class="fas fa-car"></i> Car Depreciation</h4>
+          <p>Initial value: $25,000, rate: 12% p.a. After 4 years: <br />
+          <strong>V = 25,000 (0.88) = $15,008.64</strong><br />
+          Total depreciation: $9,991.36</p>
+        </div>
+        <div class="example-card">
+          <h4><i class="fas fa-laptop"></i> Equipment Depreciation</h4>
+          <p>Initial value: $8,000, rate: 20% p.a. After 3 years: <br />
+          <strong>V = 8,000 (0.80) = $4,096.00</strong><br />
+          Total depreciation: $3,904.00</p>
+        </div>
+      </div>
+
+      <h3><i class="fas fa-clock"></i> Real-World Application</h3>
+      <p>
+        Businesses use reducing-balance depreciation for tax purposes because it matches 
+        higher depreciation in early years with higher maintenance costs later. 
+        It's also used for vehicles, machinery, electronics anything that loses value more 
+        quickly when new.
+      </p>
+
+      <div class="key-takeaway">
+        <h4><i class="fas fa-key"></i> Key Takeaway</h4>
+        <ul>
+          <li>Reducing-balance depreciation follows a <strong>geometric sequence</strong>.</li>
+          <li>The common ratio is <strong>(1 - r)</strong>, where r is the depreciation rate.</li>
+          <li>The total depreciation over n years is a <strong>finite geometric series</strong>.</li>
+          <li>This model is widely used in accounting, finance, and asset management.</li>
+        </ul>
+      </div>
+
+      <!-- navigation buttons -->
+     
+    </div>
+
+    <!-- optional extra: video embed (if needed) but kept minimal -->
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h3>SeqNova</h3>
+          <p>Exploring the Applications of Sequences and Series</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="ABOUTUS.html">About</a>
+        <a href="LESSON.html">Lessons</a>
+        <a href="QUIZPAGE.html">Quizzes</a>
+        <a href="CONTACTS.html">Contact Us</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 SeqNova. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
+```

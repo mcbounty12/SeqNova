@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Population Growth � Models &amp; Predictions | SeqNova</title>
+   <link rel="stylesheet" href="NOVA/POPULATION.CSS"/>
+  <link rel="stylesheet" href="NOVA/CODE.CSS"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+</head>
+<script>
+  // Map of search keywords → page files
+  const searchMap = {
+    // Lessons
+    'lesson': 'LESSON.html',
+    'lessons': 'LESSON.html',
+    'introduction': 'LESSONSSS.html',
+    'geometric': 'LESSONSSS.html',
+    'sequence': 'LESSONSSS.html',
+    'series': 'LESSONSSS.html',
+    'population': 'LESSON222.html',
+    'growth': 'LESSON222.html',
+    'depreciation': 'LESSON333.html',
+    'decay': 'LESSON333.html',
+
+    // Other pages
+    'quiz': 'QUIZPAGE.html',
+    'quizzes': 'QUIZPAGE.html',
+    'practice': 'PRACTICE.html',
+    'interactive': 'INTERACTIVE.html',
+    'geogebra': 'INTERACTIVE.html',
+    'desmos': 'INTERACTIVE.html',
+    'about': 'ABOUTUS.html',
+    'team': 'ABOUTUS.html',
+    'contact': 'CONTACTS.html',
+    'contacts': 'CONTACTS.html',
+    'calculate': 'CALCULATE.html',
+    'calculator': 'CALCULATE.html',
+    'video': 'VIDEOS.HTML',
+    'videos': 'VIDEOS.HTML',
+    'game': 'GAME.HTML',
+    'games': 'GAME.HTML',
+    'home': 'HOMEPAGE.html'
+  };
+
+  function runSearch() {
+    const input = document.querySelector('.search-box input');
+    if (!input) return;
+
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please type something to search.');
+      return;
+    }
+
+    // Find first matching keyword
+    let found = null;
+    for (const key in searchMap) {
+      if (query.includes(key) || key.includes(query)) {
+        found = searchMap[key];
+        break;
+      }
+    }
+
+    if (found) {
+      window.location.href = found;
+    } else {
+      alert('No results found for "' + input.value + '".\nTry: lessons, population, depreciation, quiz, practice, about, contact');
+    }
+  }
+
+  // Press Enter in the search box
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.search-box input');
+    const icon = document.querySelector('.search-box i');
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+    }
+
+    // Click the search icon
+    if (icon) {
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('click', runSearch);
+    }
+  });
+</script>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <a href="HOMEPAGE.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="logo-text">
+        <h1>SeqNova</h1>
+        <span>Exploring the Applications of Sequences and Series</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle active">Lessons <i class="fas fa-chevron-down" style="font-size:0.65rem"></i></a>
+        <div class="dropdown-menu">
+          <a href="LESSONSSS.html">1. Introduction to Geometric Sequences &amp; Series</a>
+          <a href="LESSON222.html">2. Population Growth</a>
+          <a href="LESSON333.html">3. Depreciation</a>
+        </div>
+      </li>
+      <li><a href="QUIZPAGE.html">Quizzes</a></li>
+      <li><a href="ABOUTUS.html">About Us</a></li>
+      <li><a href="CONTACTS.html">Contacts</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="CONTACTS.html" class="btn-contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="pop-hero">
+    <div class="math-left">P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup></div>
+    <div class="math-right">a<sub>n</sub> = a<sub>1</sub> &times; r<sup>n&minus;1</sup></div>
+
+    <h1>Population Growth</h1>
+    <p class="tagline">Models &amp; Predictions Using Sequences and Series</p>
+    <p>Learn how geometric sequences describe year-by-year population change and how we use them to predict future growth.</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <section class="pop-section">
+    <div class="content-card">
+
+      <!-- 1. Introduction -->
+      <h2 class="section-title">
+        <span class="num">1</span>
+        Why Model Population Growth?
+      </h2>
+      <p>
+        Populations of people, animals, and even bacteria rarely stay the same. When the increase happens at a roughly constant 
+        percentage each year, the numbers form a clear mathematical pattern. That pattern is a <strong>geometric sequence</strong>.
+      </p>
+      <div class="highlight">
+        By turning population change into a sequence, we can predict how large a group will be in 5, 10, or 20 years 
+        and understand the story behind the numbers.
+      </div>
+
+      <!-- 2. The Model -->
+      <h2 class="section-title">
+        <span class="num">2</span>
+        The Geometric Growth Model
+      </h2>
+      <p>
+        Suppose a population starts at P<sub>0</sub> and grows by a fixed percentage r each year. 
+        After one year the population becomes P<sub>0</sub> &times; (1 + r). After two years it becomes 
+        P<sub>0</sub> &times; (1 + r)<sup>2</sup>, and so on.
+      </p>
+      <div class="formula-box">
+        P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup>
+        <span>P<sub>0</sub> = starting population &nbsp;|&nbsp; r = annual growth rate (decimal) &nbsp;|&nbsp; n = years</span>
+      </div>
+      <p>
+        This is exactly the same idea as the geometric sequence formula:
+      </p>
+      <div class="formula-box">
+        a<sub>n</sub> = a<sub>1</sub> &times; r<sup>n&minus;1</sup>
+        <span>Here the first term a<sub>1</sub> = P<sub>0</sub> and the common ratio is (1 + r)</span>
+      </div>
+
+      <!-- 3. Sequence year by year -->
+      <h2 class="section-title">
+        <span class="num">3</span>
+        Seeing the Sequence Year by Year
+      </h2>
+      <p>
+        Each year produces the next term of the sequence. The list of populations is itself a geometric sequence.
+      </p>
+
+      <div class="example-box">
+        <h4><i class="fas fa-city"></i> Example  A Growing Town</h4>
+        <p>A town starts with 10&nbsp;000 people and grows at 5% per year.</p>
+        <ul>
+          <li>Common ratio = 1 + 0.05 = 1.05</li>
+          <li>P<sub>0</sub> = 10&nbsp;000</li>
+        </ul>
+      </div>
+
+      <table class="seq-table">
+        <thead>
+          <tr>
+            <th>Year (n)</th>
+            <th>Term</th>
+            <th>Calculation</th>
+            <th>Population</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0</td>
+            <td>P<sub>0</sub></td>
+            <td>10&nbsp;000 &times; 1.00</td>
+            <td>10&nbsp;000</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>P<sub>1</sub></td>
+            <td>10&nbsp;000 &times; 1.05</td>
+            <td>10&nbsp;500</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>P<sub>2</sub></td>
+            <td>10&nbsp;000 &times; (1.05)<sup>2</sup></td>
+            <td>11&nbsp;025</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>P<sub>3</sub></td>
+            <td>10&nbsp;000 &times; (1.05)<sup>3</sup></td>
+            <td>11&nbsp;576</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>P<sub>5</sub></td>
+            <td>10&nbsp;000 &times; (1.05)<sup>5</sup></td>
+            <td>12&nbsp;763</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>P<sub>10</sub></td>
+            <td>10&nbsp;000 &times; (1.05)<sup>10</sup></td>
+            <td>16&nbsp;289</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        The sequence of populations is: &nbsp; 10&nbsp;000, 10&nbsp;500, 11&nbsp;025, 11&nbsp;576, &hellip; 
+        Each term is the previous term multiplied by 1.05.
+      </p>
+
+      <!-- 4. Predicting the future -->
+      <h2 class="section-title">
+        <span class="num">4</span>
+        Predicting Population Over Time
+      </h2>
+      <p>
+        Once you know P<sub>0</sub> and r, you can jump to any future year without calculating every single term. 
+        That is the power of the closed-form formula.
+      </p>
+
+      <div class="example-box">
+        <h4><i class="fas fa-chart-line"></i> Prediction Example</h4>
+        <p>Using the same town (P<sub>0</sub> = 10&nbsp;000, r = 5%):</p>
+        <ol>
+          <li>After 15 years: P<sub>15</sub> = 10&nbsp;000 &times; (1.05)<sup>15</sup> &approx; <strong>20&nbsp;789</strong></li>
+          <li>After 20 years: P<sub>20</sub> = 10&nbsp;000 &times; (1.05)<sup>20</sup> &approx; <strong>26&nbsp;533</strong></li>
+        </ol>
+        <p>The model predicts the town will more than double in about 15 years.</p>
+      </div>
+
+      <div class="model-grid">
+        <div class="model-card m1">
+          <h3><i class="fas fa-forward"></i> Forward Prediction</h3>
+          <p>Given today&rsquo;s population and growth rate, estimate the size in any future year using P<sub>n</sub> = P<sub>0</sub> (1 + r)<sup>n</sup>.</p>
+        </div>
+        <div class="model-card m2">
+          <h3><i class="fas fa-search"></i> Working Backwards</h3>
+          <p>Given two population figures and the time between them, you can solve for the average growth rate r.</p>
+        </div>
+      </div>
+
+      <!-- 5. Role of series -->
+      <h2 class="section-title">
+        <span class="num">5</span>
+        Where Do Series Appear?
+      </h2>
+      <p>
+        A sequence gives the population at each year. A <strong>series</strong> is the sum of terms. 
+        In population studies we sometimes care about totals over many years for example total births, 
+        or cumulative growth. The sum of a geometric sequence is a geometric series:
+      </p>
+      <div class="formula-box">
+        S<sub>n</sub> = P<sub>0</sub> [(1 + r)<sup>n</sup> &minus; 1] &divide; r &nbsp;&nbsp; (when r &ne; 0)
+        <span>Useful when you need the sum of successive population values or related quantities</span>
+      </div>
+      <p>
+        For pure size prediction we usually only need the single term P<sub>n</sub>. 
+        The series becomes important when we add quantities that themselves follow geometric growth.
+      </p>
+
+      <!-- 6. Assumptions -->
+      <h2 class="section-title">
+        <span class="num">6</span>
+        Assumptions and Limitations
+      </h2>
+      <p>
+        The simple geometric model is powerful, but it rests on a few assumptions:
+      </p>
+      <div class="note-box">
+        <strong>Remember:</strong> Real populations are affected by migration, changing birth rates, 
+        resources, disease, and policy. The geometric model is a useful starting point, not a perfect forecast.
+      </div>
+      <ul style="margin-left:20px; color:#475569; margin-bottom:16px;">
+        <li>Growth rate stays constant every year</li>
+        <li>No sudden events (wars, pandemics, large migration)</li>
+        <li>Resources do not limit growth (unlimited environment)</li>
+        <li>We treat population as a continuous smooth number</li>
+      </ul>
+      <p>
+        More advanced models (logistic growth, age-structured models) add extra terms, 
+        but they still build on the same geometric foundation.
+      </p>
+
+      <!-- 7. Key ideas -->
+      <h2 class="section-title">
+        <span class="num">7</span>
+        Key Ideas to Take Away
+      </h2>
+
+      <div class="key-points">
+        <div class="key-item p1">
+          <div class="icon"><i class="fas fa-percentage"></i></div>
+          <div>
+            <h4>Constant % Growth</h4>
+            <p>A fixed percentage increase each year creates a geometric sequence</p>
+          </div>
+        </div>
+        <div class="key-item p2">
+          <div class="icon"><i class="fas fa-list-ol"></i></div>
+          <div>
+            <h4>Year = Term</h4>
+            <p>Each year&rsquo;s population is the next term of the sequence</p>
+          </div>
+        </div>
+        <div class="key-item p3">
+          <div class="icon"><i class="fas fa-crystal-ball"></i></div>
+          <div>
+            <h4>Prediction Power</h4>
+            <p>The closed formula lets you jump to any future year instantly</p>
+          </div>
+        </div>
+        <div class="key-item p4">
+          <div class="icon"><i class="fas fa-plus"></i></div>
+          <div>
+            <h4>Series for Totals</h4>
+            <p>Summing geometric terms gives cumulative quantities over time</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="summary-box">
+        <h3><i class="fas fa-check-circle"></i> Quick Summary</h3>
+        <ul>
+          <li>Population growth at a constant rate is modelled by a geometric sequence.</li>
+          <li>The key formula is P<sub>n</sub> = P<sub>0</sub> &times; (1 + r)<sup>n</sup>.</li>
+          <li>Each year multiplies the previous population by the common ratio (1 + r).</li>
+          <li>We can predict future size, find the growth rate, or solve for time.</li>
+          <li>Series appear when we need the sum of successive population-related values.</li>
+          <li>The model is a clear starting point; real life may need more complex adjustments.</li>
+        </ul>
+      </div>
+
+      <!-- Navigation -->
+     
+
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h3>SeqNova</h3>
+          <p>Exploring the Applications of Sequences and Series</p>
+        </div>
+      </div>
+
+      <div class="footer-tagline">
+        <strong>Mathematics  Growth  Change</strong><br>
+        A brighter understanding for a better future.
+      </div>
+
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+       2026 SeqNova. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
